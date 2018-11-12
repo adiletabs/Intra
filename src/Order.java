@@ -4,7 +4,7 @@ public class Order extends Message {
     private OrderStatus status;
 
     {
-        status = OrderStatus.New;
+        status = OrderStatus.NEW;
     }
 
     public Order(String title, String text, String sender, Date date) {
@@ -14,4 +14,11 @@ public class Order extends Message {
     public OrderStatus getStatus() { return status; }
 
     public void setStatus(OrderStatus status) { this.status = status; }
+
+    @Override
+    public String toString() {
+        String info = super.toString();
+        info += "Status: " + status.toString() + '\n';
+        return info;
+    }
 }

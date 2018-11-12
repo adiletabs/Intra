@@ -19,9 +19,10 @@ public class Message {
 
     public Date getDate() { return date; }
 
+    @Override
     public String toString() {
-        String res = title + "\n\n" + text + "\n\n";
-        res += "Sender: " + sender + '\n' + "Date: " + date.toString();
-        return res;
+        String info = title + "\n\n" + text + "\n\n";
+        info += "Sender: " + sender + '\n' + "Date: " + date.toString();
+        return info;
     }
 }

@@ -1,9 +1,9 @@
 public enum TeacherPosition {
-    Professor,
-    AssociateProfessor,
-    AssistantProfessor,
-    SeniorLecturer,
-    Lecturer,
-    Assistant,
-    Tutor
+    PROFESSOR,
+    ASSOCIATE_PROFESSOR,
+    ASSISTANT_PROFESSOR,
+    SENIOR_LECTURER,
+    LECTURER,
+    ASSISTANT,
+    TUTOR
 }

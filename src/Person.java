@@ -38,6 +38,7 @@ public abstract class Person {
         this.birthDate = date;
     }
 
+    @Override
     public String toString() {
         String nameInfo = "Name: " + this.getFullName() + '\n';
         String genderInfo = "Gender: " + this.getGender().toString() + '\n';
@@ -45,5 +46,14 @@ public abstract class Person {
         return nameInfo + genderInfo + birthInfo;
     }
 
-    // equals, hashCode
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Person)) return false;
+        Person p = (Person) obj;
+        return p.firstName.equals(firstName) && p.lastName.equals(lastName) &&
+                p.gender.equals(gender) && p.birthDate.equals(birthDate);
+    }
+
+    // hashCode
 }

@@ -9,4 +9,11 @@ public class News extends Message {
     }
 
     public Faculty getFaculty() { return faculty; }
+
+    @Override
+    public String toString() {
+        String info = super.toString();
+        info += "Faculty: " + faculty.toString() + '\n';
+        return info;
+    }
 }

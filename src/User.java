@@ -1,4 +1,4 @@
-public class User extends Person {
+public abstract class User extends Person {
     private String login, password, email, phone;
 
     public User(String firstName, String lastName, String login) {
@@ -18,6 +18,7 @@ public class User extends Person {
 
     public void setPhone(String phone) { this.phone = phone; }
 
+    @Override
     public String toString() {
         String emailInfo = "Email: " + email + '\n';
         String phoneInfo = "Phone number: " + phone + '\n';
@@ -25,5 +26,13 @@ public class User extends Person {
         return super.toString() + emailInfo + phoneInfo + loginInfo;
     }
 
-    // equals, hashcode
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof User)) return false;
+        User u = (User) obj;
+        return u.login.equals(login);
+    }
+
+    // hashcode
 }

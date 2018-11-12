@@ -10,6 +10,7 @@ public class CourseFile {
 
     public String getText() { return text; }
 
+    @Override
     public String toString() {
         return title + "\n\n" + text;
     }
