@@ -1,8 +1,13 @@
 public abstract class User extends Person {
     private String login, password, email, phone;
 
-    public User(String firstName, String lastName, String login) {
-        super(firstName, lastName);
+    {
+        email = "";
+        phone = "";
+    }
+
+    public User(String lastName, String firstName, String login) {
+        super(lastName, firstName);
         this.login = login;
     }
 

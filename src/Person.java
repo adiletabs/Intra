@@ -5,9 +5,14 @@ public abstract class Person {
     private Gender gender;
     private Date birthDate;
 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
+    {
+        gender = null;
+        birthDate = null;
+    }
+
+    public Person(String lastName, String firstName) {
         this.lastName = lastName;
+        this.firstName = firstName;
     }
 
     public String getFirstName() { return firstName; }

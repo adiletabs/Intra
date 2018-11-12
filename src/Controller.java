@@ -6,4 +6,5 @@ public class Controller {
     public static ArrayList<Manager> managers = new ArrayList<Manager>();
     public static ArrayList<ORManager> ormanagers = new ArrayList<ORManager>();
     public static ArrayList<Student> students = new ArrayList<Student>();
+    public static ArrayList<Course> courses = new ArrayList<Course>();
 }
