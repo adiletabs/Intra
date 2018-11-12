@@ -1,4 +1,6 @@
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Message {
     private String title, text, sender;
@@ -21,8 +23,19 @@ public class Message {
 
     @Override
     public String toString() {
+        String dateInfo = new SimpleDateFormat("dd.MM.yyyy").format(date);
+        String timeInfo = new SimpleDateFormat("HH:mm").format(date);
         String info = title + "\n\n" + text + "\n\n";
-        info += "Sender: " + sender + '\n' + "Date: " + date.toString();
+        info += "Sender: " + sender + '\n' + "Date: " + dateInfo + '\n' + "Time: " + timeInfo + '\n';
         return info;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Message)) return false;
+        Message msg = (Message) obj;
+        return msg.title.equals(title) && msg.text.equals(text) &&
+                msg.sender.equals(sender) && msg.date.equals(date);
     }
 }

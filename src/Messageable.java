@@ -1,3 +1,5 @@
 public interface Messageable {
-    void sendMessage(Employee emp, String title, String text);
+    boolean sendMessage(String login, String title, String text);
+    String getMessages();
+    String readMessage(String title);
 }
