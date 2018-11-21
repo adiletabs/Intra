@@ -13,7 +13,6 @@ public class Order extends Message implements Serializable {
     }
 
     public OrderStatus getStatus() { return status; }
-
     public void setStatus(OrderStatus status) { this.status = status; }
 
     @Override

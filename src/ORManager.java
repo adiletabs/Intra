@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ORManager extends Employee implements Searching, Serializable {
+
     public ORManager (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
     }

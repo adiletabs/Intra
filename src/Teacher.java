@@ -10,6 +10,16 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
         super(lastName, firstName, login);
     }
 
+    public TeacherPosition getPosition() { return position; }
+    public void setPosition(TeacherPosition position) { this.position = position; }
+
+    public Faculty getFaculty() { return faculty; }
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
+
+    public void sendOrder(Order order) {
+        Executor.orders.add(order);
+    }
+
     @Override
     public ArrayList<String> getCourses() { return courses; }
 
@@ -28,19 +38,13 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
     }
 
     @Override
-    public void addCourses(Course course) { courses.add(course.getCourseName()); }
+    public void addCourses(Course course) {
+        courses.add(course.getCourseName());
+    }
 
     @Override
-    public void deleteCourse(Course course) { courses.remove(course); }
-
-    public TeacherPosition getPosition() { return position; }
-    public void setPosition(TeacherPosition position) { this.position = position; }
-
-    public Faculty getFaculty() { return faculty; }
-    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
-
-    public void sendOrder(Order order) {
-        Executor.orders.add(order);
+    public void deleteCourse(Course course) {
+        courses.remove(course.getCourseName());
     }
 
     @Override

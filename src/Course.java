@@ -25,4 +25,24 @@ public class Course implements ManagingFiles, Serializable {
 
     public ArrayList<String> getStudentLogins() { return studentLogins; }
     public void addStudent(Student student) { studentLogins.add(student.getLogin()); }
+
+    @Override
+    public ArrayList<CourseFile> getFiles() {
+        return null;
+    }
+
+    @Override
+    public CourseFile getFile(String title) {
+        return null;
+    }
+
+    @Override
+    public void addFile(CourseFile courseFile) {
+
+    }
+
+    @Override
+    public void deleteFile(String title) {
+
+    }
 }

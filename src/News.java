@@ -10,6 +10,7 @@ public class News extends Message implements Serializable {
     }
 
     public Faculty getFaculty() { return faculty; }
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
 
     @Override
     public String toString() {

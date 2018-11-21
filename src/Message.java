@@ -1,10 +1,11 @@
 import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Message implements Serializable {
-    private String title, text, sender;
+    private String title;
+    private String text;
+    private String sender;
     private Date date;
 
     public Message(String title, String text, String sender, Date date) {
@@ -15,12 +16,16 @@ public class Message implements Serializable {
     }
 
     public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
     public String getText() { return text; }
+    public void setText(String text) { this.text = text; }
 
     public String getSender() { return sender; }
+    public void setSender(String sender) { this.sender = sender; }
 
     public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
 
     @Override
     public String toString() {

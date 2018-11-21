@@ -23,11 +23,9 @@ public abstract class User extends Person implements Serializable {
     public void setPassword(String password) { this.password = password; }
 
     public String getEmail() { return email; }
-
     public void setEmail(String email) { this.email = email; }
 
     public String getPhone() { return phone; }
-
     public void setPhone(String phone) { this.phone = phone; }
 
     @Override
