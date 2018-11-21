@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends User {
+public class Student extends User implements Serializable {
     private String id;
     private Degree degree;
     private Faculty faculty;
@@ -13,12 +14,8 @@ public class Student extends User {
         courses = new ArrayList<String>();
     }
 
-    public Student(String lastName, String firstName, String login,
-                   String id, Degree degree, Faculty faculty, int yearOfStudy) {
+    public Student (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
-        this.id = id;
-        this.degree = degree;
-        this.yearOfStudy = yearOfStudy;
     }
 
     public String getId() { return id; }

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class News extends Message {
+public class News extends Message implements Serializable {
     private Faculty faculty;
 
     public News(String title, String text, String sender, Date date, Faculty faculty) {
@@ -9,6 +10,7 @@ public class News extends Message {
     }
 
     public Faculty getFaculty() { return faculty; }
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
 
     @Override
     public String toString() {

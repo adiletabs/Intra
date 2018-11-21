@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String firstName, lastName;
     private Gender gender;
     private Date birthDate;
@@ -16,13 +17,11 @@ public abstract class Person {
     }
 
     public String getFirstName() { return firstName; }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     public String getLastName() { return lastName; }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -32,13 +31,11 @@ public abstract class Person {
     }
 
     public Gender getGender() { return gender; }
-
     public void setGender(Gender gender) { this.gender = gender; }
 
     public Date getBirthDate() {
         return birthDate;
     }
-
     public void setBirthDate(Date date) {
         this.birthDate = date;
     }

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order extends Message {
+public class Order extends Message implements Serializable {
     private OrderStatus status;
 
     {
@@ -12,7 +13,6 @@ public class Order extends Message {
     }
 
     public OrderStatus getStatus() { return status; }
-
     public void setStatus(OrderStatus status) { this.status = status; }
 
     @Override

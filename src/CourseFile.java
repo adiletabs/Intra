@@ -1,5 +1,9 @@
-public class CourseFile {
-    private String title, text, owner;
+import java.io.Serializable;
+
+public class CourseFile implements Serializable {
+    private String title;
+    private String text;
+    private String owner;
 
     public CourseFile(String title, String text, String owner) {
         this.title = title;
@@ -19,8 +23,11 @@ public class CourseFile {
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
+
         if (!(obj instanceof CourseFile)) return false;
+
         CourseFile cf = (CourseFile) obj;
+
         return cf.title.equals(title) && cf.text.equals(text) && cf.owner.equals(owner);
     }
 }
