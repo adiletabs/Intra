@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Course implements Serializable {
+public class Course implements ManagingFiles, Serializable {
     private String courseName;
     private ArrayList<String> teacherLogins;
     private ArrayList<String> studentLogins;
