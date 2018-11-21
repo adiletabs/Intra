@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
-
 public enum CourseStatus {
+    FINISHED,
+    CURRENT,
+    NEXT,
+    SUGGESTED
 }

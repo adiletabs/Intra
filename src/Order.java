@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order extends Message {
+public class Order extends Message implements Serializable {
     private OrderStatus status;
 
     {

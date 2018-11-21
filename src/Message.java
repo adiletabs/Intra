@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Message {
+public class Message implements Serializable {
     private String title, text, sender;
     private Date date;
 

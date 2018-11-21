@@ -1,4 +1,6 @@
-public class CourseFile {
+import java.io.Serializable;
+
+public class CourseFile implements Serializable {
     private String title, text, owner;
 
     public CourseFile(String title, String text, String owner) {

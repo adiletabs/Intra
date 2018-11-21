@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String firstName, lastName;
     private Gender gender;
     private Date birthDate;

@@ -1,14 +1,21 @@
-public abstract class User extends Person {
-    private String login, password, email, phone;
+import java.io.Serializable;
+
+public abstract class User extends Person implements Serializable {
+    private String login;
+    private String password;
+    private String email;
+    private String phone;
+
+    public static String defaultPassword = "Kbtu111";
 
     {
-        email = "";
-        phone = "";
+        password = defaultPassword;
     }
 
     public User(String lastName, String firstName, String login) {
         super(lastName, firstName);
         this.login = login;
+
     }
 
     public String getLogin() { return login; }
