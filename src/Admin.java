@@ -38,42 +38,44 @@ public class Admin implements Serializable {
         }
     }
 
-    public void deleteUser(String login) {
+    public boolean deleteUser(String login) {
         for (User u: Controller.students) {
             if (u.getLogin().equals(login)) {
                 Controller.students.remove(u);
 
-                return;
+                return true;
             }
         }
         for (User u: Controller.managers) {
             if (u.getLogin().equals(login)) {
                 Controller.managers.remove(u);
 
-                return;
+                return true;
             }
         }
         for (User u: Controller.orManagers) {
             if (u.getLogin().equals(login)) {
                 Controller.orManagers.remove(u);
 
-                return;
+                return true;
             }
         }
         for (User u: Controller.executors) {
             if (u.getLogin().equals(login)) {
                 Controller.executors.remove(u);
 
-                return;
+                return true;
             }
         }
         for (User u: Controller.teachers) {
             if (u.getLogin().equals(login)) {
                 Controller.teachers.remove(u);
 
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     private void addExecutor(String lastName, String name, String newLogin) {

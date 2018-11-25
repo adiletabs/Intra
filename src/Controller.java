@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +16,11 @@ public class Controller {
     }
 
     private static final Scanner sc = new Scanner(System.in);
+
+    private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/";
+    private static final String LOG = "log.txt";
+
+    private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
 
     private static final String EXCEPT_CLASS = "Class not found!";
     private static final String EXCEPT_FILE = "File not found!";
@@ -57,6 +64,22 @@ public class Controller {
         }
     }
 
+    public static void writeLog(String msg) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(LOG, true));
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_PATTERN);
+
+            bw.write(dtf.format(LocalDateTime.now())+ " - " + msg + "\n");
+
+            bw.flush();
+            bw.close();
+        }
+        catch (IOException e) {
+            System.out.println(EXCEPT_IO);
+        }
+    }
+
     private void session_user(String login, String password) {
         ArrayList<User> list = new ArrayList<>();
 
@@ -70,7 +93,7 @@ public class Controller {
             if (u.getLogin().equals(login) && u.getPassword().equals(password)) {
                 user = u;
 
-                switch (u.getClass().toString()) {
+                switch (u.getClass().toString().split(" ")[1]) {
                     case "Student":
                         currentMode = Mode.STUDENT;
                         break;
@@ -87,12 +110,12 @@ public class Controller {
                         currentMode = Mode.EXECUTOR;
                         break;
                 }
+                System.out.println(user);
 
                 return;
             }
         }
 
-        System.out.println(user);
     }
 
     private void session_admin(String login, String password) {
@@ -131,60 +154,72 @@ public class Controller {
         }
         else {
             System.out.println("Invalid login or password!");
-
-            return;
         }
     }
 
     private void adminAdd() {
-        System.out.println("Whom you want to add?");
-        System.out.println("1. Student");
-        System.out.println("2. Teacher");
-        System.out.println("3. Manager");
-        System.out.println("4. OR Manager");
-        System.out.println("5. Executor");
+        while (true) {
+            System.out.println("Whom you want to add?");
+            System.out.println("1. Student");
+            System.out.println("2. Teacher");
+            System.out.println("3. Manager");
+            System.out.println("4. OR Manager");
+            System.out.println("5. Executor");
 
-        String ans = sc.nextLine();
-        Mode mode;
+            String ans = sc.nextLine();
+            Mode mode;
 
-        switch (ans) {
-            case "1":
-                mode = Mode.STUDENT;
-                break;
-            case "2":
-                mode = Mode.TEACHER;
-                break;
-            case "3":
-                mode = Mode.MANAGER;
-                break;
-            case "4":
-                mode = Mode.ORMANAGER;
-                break;
-            case "5":
-                mode = Mode.EXECUTOR;
-                break;
-            default:
-                System.out.println("Invalid option!");
-                return;
+            switch (ans) {
+                case "1":
+                    mode = Mode.STUDENT;
+                    break;
+                case "2":
+                    mode = Mode.TEACHER;
+                    break;
+                case "3":
+                    mode = Mode.MANAGER;
+                    break;
+                case "4":
+                    mode = Mode.ORMANAGER;
+                    break;
+                case "5":
+                    mode = Mode.EXECUTOR;
+                    break;
+                case "exit":
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+                    continue;
+            }
+
+            System.out.println("Enter lastname");
+
+            String lname = sc.nextLine();
+
+            System.out.println("Enter firstname");
+
+            String name = sc.nextLine();
+
+            System.out.println("Enter login");
+
+            String login = sc.nextLine();
+
+            admin.addUser(lname, name, login, mode);
         }
 
-        System.out.println("Enter lastname");
-
-        String lname = sc.nextLine();
-
-        System.out.println("Enter firstname");
-
-        String name = sc.nextLine();
-
-        System.out.println("Enter login");
-
-        String login = sc.nextLine();
-
-        admin.addUser(lname, name, login, mode);
     }
 
     private void adminRemove() {
+        System.out.println("Enter user`s login you want to delete");
 
+        String login = sc.nextLine();
+
+        if (admin.deleteUser(login)) {
+            System.out.println("Success!");
+        }
+        else {
+            System.out.println("User not found!");
+        }
     }
 
     private void adminLogs() {
