@@ -17,7 +17,7 @@ public class Controller {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/";
+    private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
     private static final String LOG = "log.txt";
 
     private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
@@ -66,7 +66,7 @@ public class Controller {
 
     public static void writeLog(String msg) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(LOG, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + LOG, true));
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
@@ -93,6 +93,8 @@ public class Controller {
             if (u.getLogin().equals(login) && u.getPassword().equals(password)) {
                 user = u;
 
+                Controller.writeLog("User " + u.getLogin() + " logged in!");
+
                 switch (u.getClass().toString().split(" ")[1]) {
                     case "Student":
                         currentMode = Mode.STUDENT;
@@ -110,7 +112,7 @@ public class Controller {
                         currentMode = Mode.EXECUTOR;
                         break;
                 }
-                System.out.println(user);
+//                System.out.println(user);
 
                 return;
             }
@@ -123,6 +125,8 @@ public class Controller {
 
         if (admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
             String ans = "";
+
+            Controller.writeLog("Admin logged in!");
 
             while (ans != "exit") {
                 System.out.println("Choose the option!");
@@ -223,7 +227,20 @@ public class Controller {
     }
 
     private void adminLogs() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(PATH + LOG));
 
+            String line = br.readLine();
+
+            while (line != null) {
+                System.out.println(line);
+
+                line = br.readLine();
+            }
+        }
+        catch (IOException e) {
+            System.out.println(EXCEPT_IO);
+        }
     }
 
     private void loadData() {
