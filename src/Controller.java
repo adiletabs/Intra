@@ -15,16 +15,16 @@ public class Controller {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    private final String EXCEPT_CLASS = "Class not found!";
-    private final String EXCEPT_FILE = "File not found!";
-    private final String EXCEPT_IO = "Input / Output exception!";
+    private static final String EXCEPT_CLASS = "Class not found!";
+    private static final String EXCEPT_FILE = "File not found!";
+    private static final String EXCEPT_IO = "Input / Output exception!";
 
-    private final String TEACHERS = "teachers.out";
-    private final String STUDENTS = "students.out";
-    private final String ORMANAGERS = "ormanagers.out";
-    private final String MANAGERS = "managers.out";
-    private final String EXECUTORS = "executors.out";
-    private final String NEWS = "news.out";
+    private static final String TEACHERS = "teachers.out";
+    private static final String STUDENTS = "students.out";
+    private static final String ORMANAGERS = "ormanagers.out";
+    private static final String MANAGERS = "managers.out";
+    private static final String EXECUTORS = "executors.out";
+    private static final String NEWS = "news.out";
 
     public static ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     public static ArrayList<Manager> managers = new ArrayList<Manager>();
@@ -289,6 +289,91 @@ public class Controller {
         }
         catch (ClassNotFoundException e) {
             System.out.println(EXECUTORS + ": " + EXCEPT_CLASS);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(EXECUTORS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(EXECUTORS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveStudents() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(STUDENTS));
+
+            oot.writeObject(students);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(STUDENTS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(STUDENTS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveTeachers() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(TEACHERS));
+
+            oot.writeObject(teachers);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(TEACHERS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(TEACHERS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveManagers() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(MANAGERS));
+
+            oot.writeObject(managers);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(MANAGERS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(MANAGERS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveOrManagers() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(ORMANAGERS));
+
+            oot.writeObject(orManagers);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(ORMANAGERS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(ORMANAGERS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveExecutors() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(EXECUTORS));
+
+            oot.writeObject(executors);
+
+            oot.flush();
+            oot.close();
         }
         catch (FileNotFoundException e) {
             System.out.println(EXECUTORS + ": " + EXCEPT_FILE);

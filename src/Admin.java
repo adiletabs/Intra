@@ -81,6 +81,8 @@ public class Admin implements Serializable {
 
         if (!Controller.executors.contains(executor)) {
             Controller.executors.add(executor);
+
+            Controller.saveExecutors();
         }
         else {
             System.out.println(executor.getClass().toString().split(" ")[1] + " already exists!");
@@ -92,6 +94,8 @@ public class Admin implements Serializable {
 
         if (!Controller.managers.contains(manager)) {
             Controller.managers.add(manager);
+
+            Controller.saveManagers();
         }
         else {
             System.out.println(manager.getClass().toString().split(" ")[1] + " already exists!");
@@ -103,6 +107,8 @@ public class Admin implements Serializable {
 
         if (!Controller.orManagers.contains(orManager)) {
             Controller.orManagers.add(orManager);
+
+            Controller.saveOrManagers();
         }
         else {
             System.out.println(orManager.getClass().toString().split(" ")[1] + " already exists!");
@@ -114,6 +120,8 @@ public class Admin implements Serializable {
 
         if (!Controller.teachers.contains(teacher)) {
             Controller.teachers.add(teacher);
+
+            Controller.saveTeachers();
         }
         else {
             System.out.println(teacher.getClass().toString().split(" ")[1] + " already exists!");
@@ -125,6 +133,8 @@ public class Admin implements Serializable {
 
         if (!Controller.students.contains(student)) {
             Controller.students.add(student);
+
+            Controller.saveStudents();
         }
         else {
             System.out.println(student.getClass().toString().split(" ")[1] + " already exists!");
