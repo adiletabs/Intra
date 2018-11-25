@@ -2,6 +2,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Controller {
@@ -278,11 +280,60 @@ public class Controller {
     }
 
     private void showNews() {
-        
+        int limit = 7;
+        String ans = "";
+
+        for (int i = 0; i < news.size(); ++i) {
+            System.out.println((i + 1) + ". " + news.get(news.size() - i - 1).getTitle());
+
+            if (i == limit) break;
+        }
+
+        System.out.println("Select the news you want");
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < limit + 1) {
+                    showNews(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                if (ans.equals("exit")) {
+                    break;
+                }
+
+                System.out.println("Wrong selection");
+            }
+        }
+
+
+    }
+
+    private void showNews(int ind) {
+        System.out.println(news.get(news.size() - ind - 1));
     }
 
     private void sendOrder() {
+        System.out.println("Write order you want to send");
 
+        System.out.println("What`s its title?");
+        String title = sc.nextLine();
+
+        System.out.println("What`s its text?");
+        String text = sc.nextLine();
+
+        Order order = new Order(title, text, teacher.getLogin(), Calendar.getInstance().getTime());
+
+        teacher.sendOrder(order);
     }
 
     private void sessionManager() {
@@ -294,7 +345,7 @@ public class Controller {
     }
 
     private void sessionExecutor() {
-
+        
     }
 
     private void sessionAdmin(String login, String password) {
