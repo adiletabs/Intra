@@ -25,6 +25,11 @@ public class Student extends User implements ManagingCourses, Serializable {
     public void incrementYearOfStudy() { yearOfStudy++; }
 
     @Override
+    public ArrayList<String> getCourses() {
+        return null;
+    }
+
+    @Override
     public ArrayList<Course> getCoursesObj() {
         ArrayList<Course> curCourses = new ArrayList<>();
 
@@ -56,12 +61,13 @@ public class Student extends User implements ManagingCourses, Serializable {
 
     }
 
-    public String getCourses() {
-        String res = getFullName() + " is not registered for any courses\n";
-        if (!courses.isEmpty()) {
-            res = "Courses of " + getFullName() + ":\n\n";
-            for (String s: courses) res += (s + '\n');
-        }
-        return res;
-    }
+//    @Override
+//    public ArrayList<String> getCourses() {
+//        String res = getFullName() + " is not registered for any courses\n";
+//        if (!courses.isEmpty()) {
+//            res = "Courses of " + getFullName() + ":\n\n";
+//            for (String s: courses) res += (s + '\n');
+//        }
+//        return res;
+//    }
 }

@@ -68,10 +68,10 @@ public class Controller {
 
         switch (ans) {
             case "admin":
-                session_admin(login, password);
+                sessionAdmin(login, password);
                 break;
             case "user":
-                session_user(login, password);
+                sessionUser(login, password);
                 break;
         }
     }
@@ -92,7 +92,7 @@ public class Controller {
         }
     }
 
-    private void session_user(String login, String password) {
+    private void sessionUser(String login, String password) {
         ArrayList<User> list = new ArrayList<>();
 
         list.addAll(teachers);
@@ -109,19 +109,19 @@ public class Controller {
 
                 switch (u.getClass().toString().split(" ")[1]) {
                     case "Student":
-                        session_student();
+                        sessionStudent();
                         break;
                     case "Teacher":
-                        session_teacher();
+                        sessionTeacher();
                         break;
                     case "Manager":
-                        session_manager();
+                        sessionManager();
                         break;
                     case "OPManager":
-                        session_ormanager();
+                        sessionORManager();
                         break;
                     case "Executor":
-                        session_executor();
+                        sessionExecutor();
                         break;
                 }
 //                System.out.println(user);
@@ -132,7 +132,7 @@ public class Controller {
 
     }
 
-    private void session_student() {
+    private void sessionStudent() {
         Student student = (Student) user;
 
         System.out.println("You are logged as student!");
@@ -152,10 +152,10 @@ public class Controller {
         }
     }
 
-    private void session_teacher() {
+    private void sessionTeacher() {
         teacher = (Teacher) user;
 
-        courses = teacher.getCoursesObj();
+        curCourses = teacher.getCoursesObj();
 
         String ans = "";
 
@@ -172,56 +172,132 @@ public class Controller {
 
             switch (ans) {
                 case "1":
-                    teacher_courses();
+                    teacherCourses();
                     break;
                 case "2":
-                    show_schedule();
+                    showSchedule();
                     break;
                 case "3":
-                    show_news();
+                    showNews();
                     break;
                 case "4":
-                    send_order();
+                    sendOrder();
                     break;
+                case "exit":
+                    return;
                 default:
                     System.out.println("Not valid option!");
                     break;
             }
         }
 
+    }
 
+    private void teacherCourses() {
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("Your courses:");
+
+            for (int i = 0; i < curCourses.size(); ++i) {
+                System.out.println((i + 1) + ". " + curCourses.get(i).getCourseName());
+            }
+
+            System.out.println("Select course you want");
+
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < curCourses.size()) {
+                    teacherCourse(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Wrong selection");
+            }
+        }
 
     }
 
-    private void teacher_courses() {
+    private void teacherCourse(int ind) {
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Add file");
+            System.out.println("2. Delete file");
+            System.out.println("3. Show students");
+            System.out.println("4. Show Info");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    teacherAddFile(ind);
+                    break;
+                case "2":
+                    showSchedule();
+                    break;
+                case "3":
+                    showNews();
+                    break;
+                case "4":
+                    System.out.println(curCourses.get(ind));
+                    break;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
+    }
+
+    private void teacherAddFile(int ind) {
+        System.out.println("Load the file you want to add");
+
+        System.out.println("What`s its title?");
+        String title = sc.nextLine();
+
+        System.out.println("What`s its text?");
+        String text = sc.nextLine();
+
+        CourseFile courseFile = new CourseFile(title, text, teacher.getLogin());
+
+        curCourses.get(ind).addFile(courseFile);
 
     }
 
-    private void show_schedule() {
+    private void showSchedule() {
 
     }
 
-    private void show_news() {
-
-    }
-
-    private void send_order() {
+    private void showNews() {
         
     }
 
-    private void session_manager() {
+    private void sendOrder() {
 
     }
 
-    private void session_ormanager() {
+    private void sessionManager() {
 
     }
 
-    private void session_executor() {
+    private void sessionORManager() {
 
     }
 
-    private void session_admin(String login, String password) {
+    private void sessionExecutor() {
+
+    }
+
+    private void sessionAdmin(String login, String password) {
         admin = new Admin();
 
         if (admin.getLogin().equals(login) && admin.getPassword().equals(password)) {

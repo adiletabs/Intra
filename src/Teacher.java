@@ -26,8 +26,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
 
         for (Course c: Controller.courses) {
             for (String s: courses) {
-                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin())
-                        || c.getStudentLogins().contains(getLogin()))) {
+                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin()))) {
                     curCourses.add(c);
                 }
             }
