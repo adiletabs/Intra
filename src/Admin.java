@@ -14,6 +14,10 @@ public class Admin implements Serializable {
         getData();
     }
 
+    public String getLogin() { return login; }
+
+    public String getPassword() { return password; }
+
     public void addUser(String lastName, String name, String newLogin, Mode mode) {
         switch (mode) {
             case STUDENT:
@@ -23,13 +27,13 @@ public class Admin implements Serializable {
                 addTeacher(lastName, name, newLogin);
                 break;
             case MANAGER:
-                addStudent(lastName, name, newLogin);
+                addManager(lastName, name, newLogin);
                 break;
             case ORMANAGER:
-                addTeacher(lastName, name, newLogin);
+                addORManager(lastName, name, newLogin);
                 break;
             case EXECUTOR:
-                addStudent(lastName, name, newLogin);
+                addExecutor(lastName, name, newLogin);
                 break;
         }
     }
@@ -79,7 +83,7 @@ public class Admin implements Serializable {
             Controller.executors.add(executor);
         }
         else {
-            System.out.println(executor.getClass().toString() + " already exists!");
+            System.out.println(executor.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -90,7 +94,7 @@ public class Admin implements Serializable {
             Controller.managers.add(manager);
         }
         else {
-            System.out.println(manager.getClass().toString() + " already exists!");
+            System.out.println(manager.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -101,7 +105,7 @@ public class Admin implements Serializable {
             Controller.orManagers.add(orManager);
         }
         else {
-            System.out.println(orManager.getClass().toString() + " already exists!");
+            System.out.println(orManager.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -112,7 +116,7 @@ public class Admin implements Serializable {
             Controller.teachers.add(teacher);
         }
         else {
-            System.out.println(teacher.getClass().toString() + " already exists!");
+            System.out.println(teacher.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -123,7 +127,7 @@ public class Admin implements Serializable {
             Controller.students.add(student);
         }
         else {
-            System.out.println(student.getClass().toString() + " already exists!");
+            System.out.println(student.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 

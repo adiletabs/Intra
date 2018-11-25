@@ -14,10 +14,28 @@ public abstract class Employee extends User implements Messaging, Serializable {
 
     @Override
     public void sendMessage(Message message, String login) {
-        for (Employee e: Controller.employees) {
+        for (Employee e: Controller.teachers) {
             if (e.getLogin().equals(login)) {
                 e.messages.add(message);
-                break;
+                return;
+            }
+        }
+        for (Employee e: Controller.executors) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
+            }
+        }
+        for (Employee e: Controller.orManagers) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
+            }
+        }
+        for (Employee e: Controller.managers) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
             }
         }
     }
