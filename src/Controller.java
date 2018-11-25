@@ -345,8 +345,170 @@ public class Controller {
     }
 
     private void sessionExecutor() {
-        
+        executor = (Executor) user;
+
+        String ans = "";
+
+        System.out.println("You are logged as executor!");
+
+        while (!ans.equals("exit")) {
+
+            System.out.println("Choose the option you want");
+            System.out.println("1. News");
+            System.out.println("2. Show new orders");
+            System.out.println("3. Show not done orders");
+            System.out.println("4. Show done orders");
+            System.out.println("5. Show rejected orders");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    showNews();
+                    break;
+                case "2":
+                    executorNew();
+                    break;
+                case "3":
+                    executorNotDone();
+                    break;
+                case "4":
+                    executorDone();
+                    break;
+                case "5":
+                    executorRejected();
+                    break;
+                case "exit":
+                    return;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
     }
+
+    private void executorNew() {
+        ArrayList<Order> orders = executor.getOrders(OrderStatus.NEW);
+
+        for (int i = 0; i < orders.size(); ++i) {
+            System.out.println((i + 1) + ". " + orders.get(i).getTitle());
+        }
+
+        String ans = "";
+
+        System.out.println("Select one order!");
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < orders.size()) {
+                    showOrder(orders.get(ind));
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                if (ans.equals("exit")) {
+                    break;
+                }
+
+                System.out.println("Wrong selection");
+            }
+        }
+    }
+
+    private void showOrder(Order order) {
+        System.out.println(order);
+
+        String ans = "";
+
+        if (order.getStatus() == OrderStatus.NEW) {
+            System.out.println("Accept this order or reject?");
+
+            ans = sc.nextLine().toLowerCase();
+
+            switch (ans) {
+                case "accept":
+                    order.setStatus(OrderStatus.NOT_DONE);
+                    break;
+                case "reject":
+                    order.setStatus(OrderStatus.REJECTED);
+                    break;
+                default:
+                    System.out.println("Not valid operation!");
+                    break;
+            }
+        }
+
+        else if (order.getStatus() == OrderStatus.NOT_DONE) {
+            System.out.println("Have this order done?");
+
+            ans = sc.nextLine().toLowerCase();
+
+            switch (ans) {
+                case "yes":
+                    order.setStatus(OrderStatus.DONE);
+                case "no":
+                    break;
+                default:
+                    System.out.println("Not valid operation!");
+                    break;
+            }
+        }
+
+        Executor.saveOrders();
+    }
+
+    private void executorDone() {
+        ArrayList<Order> orders = executor.getOrders(OrderStatus.DONE);
+
+        for (int i = 0; i < orders.size(); ++i) {
+            System.out.println((i + 1) + ". " + orders.get(i).getTitle());
+        }
+
+        String ans = "";
+
+        System.out.println("Select one order!");
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < orders.size()) {
+                    showOrder(orders.get(ind));
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                if (ans.equals("exit")) {
+                    break;
+                }
+
+                System.out.println("Wrong selection");
+            }
+        }
+    }
+
+    private void executorNotDone() {
+
+    }
+
+    private void executorRejected() {
+
+    }
+
 
     private void sessionAdmin(String login, String password) {
         admin = new Admin();
