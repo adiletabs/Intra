@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends User implements Serializable {
+public class Student extends User implements ManagingCourses, Serializable {
     private String id;
     private Degree degree;
     private Faculty faculty;
@@ -23,6 +23,38 @@ public class Student extends User implements Serializable {
     public int getYearOfStudy() { return yearOfStudy; }
 
     public void incrementYearOfStudy() { yearOfStudy++; }
+
+    @Override
+    public ArrayList<Course> getCoursesObj() {
+        ArrayList<Course> curCourses = new ArrayList<>();
+
+        for (Course c: Controller.courses) {
+            for (String s: courses) {
+                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin())
+                        || c.getStudentLogins().contains(getLogin()))) {
+                    curCourses.add(c);
+                }
+            }
+
+        }
+
+        return curCourses;
+    }
+
+    @Override
+    public Course getCourse(String courseName) {
+        return null;
+    }
+
+    @Override
+    public void addCourses(Course course) {
+
+    }
+
+    @Override
+    public void deleteCourse(Course course) {
+
+    }
 
     public String getCourses() {
         String res = getFullName() + " is not registered for any courses\n";

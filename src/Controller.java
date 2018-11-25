@@ -8,6 +8,18 @@ public class Controller {
     private Mode currentMode;
     private Admin admin;
     private User user;
+
+    private Teacher teacher;
+    private ArrayList<Course> curCourses;
+
+    private Student student;
+
+    private Manager manager;
+
+    private ORManager orManager;
+
+    private Executor executor;
+
     private ArrayList<Course> currentCourses;
     private ArrayList<Message> currentMessages;
 
@@ -97,19 +109,19 @@ public class Controller {
 
                 switch (u.getClass().toString().split(" ")[1]) {
                     case "Student":
-                        currentMode = Mode.STUDENT;
+                        session_student();
                         break;
                     case "Teacher":
-                        currentMode = Mode.TEACHER;
+                        session_teacher();
                         break;
                     case "Manager":
-                        currentMode = Mode.MANAGER;
+                        session_manager();
                         break;
                     case "OPManager":
-                        currentMode = Mode.ORMANAGER;
+                        session_ormanager();
                         break;
                     case "Executor":
-                        currentMode = Mode.EXECUTOR;
+                        session_executor();
                         break;
                 }
 //                System.out.println(user);
@@ -117,6 +129,95 @@ public class Controller {
                 return;
             }
         }
+
+    }
+
+    private void session_student() {
+        Student student = (Student) user;
+
+        System.out.println("You are logged as student!");
+
+        System.out.println("Choose the option you want");
+        System.out.println("1. Courses");
+        System.out.println("2. Transcript");
+        System.out.println("3. Schedule");
+        System.out.println("4. News");
+        System.out.println("5. Registration");
+
+        String ans = sc.nextLine();
+
+        switch (ans) {
+            case "1":
+                student.getCourses();
+        }
+    }
+
+    private void session_teacher() {
+        teacher = (Teacher) user;
+
+        courses = teacher.getCoursesObj();
+
+        String ans = "";
+
+        System.out.println("You are logged as teacher!");
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Courses");
+            System.out.println("2. Schedule");
+            System.out.println("3. News");
+            System.out.println("4. Send order");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    teacher_courses();
+                    break;
+                case "2":
+                    show_schedule();
+                    break;
+                case "3":
+                    show_news();
+                    break;
+                case "4":
+                    send_order();
+                    break;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
+
+
+
+    }
+
+    private void teacher_courses() {
+
+    }
+
+    private void show_schedule() {
+
+    }
+
+    private void show_news() {
+
+    }
+
+    private void send_order() {
+        
+    }
+
+    private void session_manager() {
+
+    }
+
+    private void session_ormanager() {
+
+    }
+
+    private void session_executor() {
 
     }
 
