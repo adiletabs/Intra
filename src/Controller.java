@@ -12,7 +12,6 @@ public class Controller {
 
     private Teacher teacher;
     private ArrayList<Course> curCourses;
-    private ArrayList<Message> curMessages;
 
     private Student student;
 
@@ -367,6 +366,7 @@ public class Controller {
             System.out.println("4. Show done orders");
             System.out.println("5. Show rejected orders");
             System.out.println("6. Show messages");
+            System.out.println("7. Write messages");
 
             ans = sc.nextLine();
 
@@ -388,6 +388,9 @@ public class Controller {
                     break;
                 case "6":
                     showMessages();
+                    break;
+                case "7":
+                    writeMessage();
                     break;
                 case "exit":
                     return;
@@ -477,6 +480,54 @@ public class Controller {
     }
 
     private void showMessages() {
+        Employee employee = null;
+
+        switch (mode) {
+            case TEACHER:
+                employee = teacher;
+                break;
+            case MANAGER:
+                employee = manager;
+                break;
+            case ORMANAGER:
+                employee = orManager;
+                break;
+            case EXECUTOR:
+                employee = executor;
+                break;
+            default:
+                return;
+        }
+
+        System.out.println(employee.getMessages());
+
+        System.out.println("Which message you want to show?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < curCourses.size()) {
+                    employee.readMessage(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Wrong selection");
+            }
+        }
+
+    }
+
+    private void writeMessage() {
         Employee employee;
 
         switch (mode) {
@@ -492,9 +543,27 @@ public class Controller {
             case EXECUTOR:
                 employee = executor;
                 break;
+            default:
+                return;
         }
 
+        System.out.println("Write reciever`s login");
+        String login = sc.nextLine();
 
+        System.out.println("Write message`s title");
+        String title = sc.nextLine();
+
+        System.out.println("Write message`s text");
+        String text = sc.nextLine();
+
+        Message message = new Message(title, text, employee.getLogin(), Calendar.getInstance().getTime());
+
+        if (employee.sendMessage(message, login)) {
+            System.out.println("Message sent!");
+        }
+        else {
+            System.out.println("Login not found!");
+        }
     }
 
     private void sessionAdmin(String login, String password) {
