@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b70b5b01-8ab1-4205-a4d7-8c98cc6fa094" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/students.out" beforeDir="false" afterPath="$PROJECT_DIR$/students.out" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,13 +70,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="26352" />
+          <entry key="java" value="26452" />
           <entry key="txt" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="26352" />
+          <entry key="JAVA" value="26452" />
           <entry key="PLAIN_TEXT" value="43" />
         </counts>
       </usages-collector>
@@ -101,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="835" lean-forward="true" selection-start-line="835" selection-end-line="835" />
+            <state relative-caret-position="91">
+              <caret line="1748" column="35" selection-start-line="1748" selection-start-column="35" selection-end-line="1748" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#544#545#0" expanded="true" />
@@ -139,12 +134,14 @@
                 <element signature="e#38969#39995#0" />
                 <element signature="e#39997#40458#0" />
                 <element signature="e#40460#40636#0" />
+                <element signature="e#45647#46217#0" />
                 <element signature="e#36488#37062#0" />
                 <element signature="e#37068#37642#0" />
                 <element signature="e#37648#38221#0" />
                 <element signature="e#38227#38815#0" />
                 <element signature="e#38821#39402#0" />
                 <element signature="e#39404#39588#0" />
+                <element signature="e#48753#49216#0" />
                 <element signature="e#39594#40062#0" />
                 <element signature="e#40068#40536#0" />
                 <element signature="e#40542#41010#0" />
@@ -234,6 +231,8 @@
       <find>Invalid login or password!</find>
       <find>getcourses</find>
       <find>Do you want to add or delete course?</find>
+      <find>NEWS</find>
+      <find>news</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -314,7 +313,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543261320332" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543261607870" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -716,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ORManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -757,10 +749,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="835" lean-forward="true" selection-start-line="835" selection-end-line="835" />
+        <state relative-caret-position="91">
+          <caret line="1748" column="35" selection-start-line="1748" selection-start-column="35" selection-end-line="1748" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#544#545#0" expanded="true" />
@@ -797,12 +796,14 @@
             <element signature="e#38969#39995#0" />
             <element signature="e#39997#40458#0" />
             <element signature="e#40460#40636#0" />
+            <element signature="e#45647#46217#0" />
             <element signature="e#36488#37062#0" />
             <element signature="e#37068#37642#0" />
             <element signature="e#37648#38221#0" />
             <element signature="e#38227#38815#0" />
             <element signature="e#38821#39402#0" />
             <element signature="e#39404#39588#0" />
+            <element signature="e#48753#49216#0" />
             <element signature="e#39594#40062#0" />
             <element signature="e#40068#40536#0" />
             <element signature="e#40542#41010#0" />

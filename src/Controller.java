@@ -1618,11 +1618,32 @@ public class Controller {
 
 //  SERIALIZATION
     private void loadData() {
+        loadNews();
         loadStudents();
         loadTeachers();
         loadExecutors();
         loadManagers();
         loadOrManagers();
+    }
+
+    private void loadNews() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(NEWS));
+
+            news = (ArrayList<News>) ois.readObject();
+
+            ois.close();
+
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println(NEWS + ": " + EXCEPT_CLASS);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(NEWS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(NEWS + ": " + EXCEPT_IO);
+        }
     }
 
     private void loadStudents() {
@@ -1726,11 +1747,29 @@ public class Controller {
 
 //  DESERIALIZAION
     private static void saveData() {
+        saveNews();
         saveManagers();
         saveOrManagers();
         saveTeachers();
         saveStudents();
         saveExecutors();
+    }
+
+    private static void saveNews() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(NEWS));
+
+            oot.writeObject(news);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(NEWS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(NEWS + ": " + EXCEPT_IO);
+        }
     }
 
     private static void saveStudents() {
