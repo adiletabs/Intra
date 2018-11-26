@@ -1,11 +1,9 @@
-import java.awt.*;
+import javax.swing.plaf.ComponentInputMapUIResource;
 import java.io.*;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 
 public class Controller {
@@ -206,11 +204,11 @@ public class Controller {
         System.out.println(student);
         Mode curMode = Mode.STUDENT;
 
-        System.out.println("What do you want to edit?");
-
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
             ans = sc.nextLine();
 
             switch (ans) {
@@ -362,14 +360,14 @@ public class Controller {
     }
 
     private void teacherInfo() {
-        System.out.println(teacher.getFullName());
+        System.out.println(teacher);
         Mode curMode = Mode.TEACHER;
-
-        System.out.println("What do you want to edit?");
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
             ans = sc.nextLine();
 
             switch (ans) {
@@ -471,13 +469,13 @@ public class Controller {
                     showNews();
                     break;
                 case "4":
-                    managerFindTeacher(Mode.TEACHER);
+                    managerFindTeacher(Mode.MANAGER);
                     break;
                 case "5":
-                    managerFindStudent(Mode.TEACHER);
+                    managerFindStudent(Mode.MANAGER);
                     break;
                 case "6":
-                    managerFindCourse(Mode.TEACHER);
+                    managerFindCourse(Mode.MANAGER);
                     break;
                 case "7":
                     managerWriteNews();
@@ -509,14 +507,14 @@ public class Controller {
     }
 
     private void managerInfo() {
-        System.out.println(manager.getFullName());
+        System.out.println(manager);
         Mode curMode = Mode.MANAGER;
-
-        System.out.println("What do you want to edit?");
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
             ans = sc.nextLine();
 
             switch (ans) {
@@ -548,14 +546,14 @@ public class Controller {
     }
 
     private void orManagerInfo() {
-        System.out.println(manager.getFullName());
+        System.out.println(orManager);
         Mode curMode = Mode.ORMANAGER;
-
-        System.out.println("What do you want to edit?");
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
             ans = sc.nextLine();
 
             switch (ans) {
@@ -596,15 +594,147 @@ public class Controller {
         else {
             System.out.println(searchTeacher);
 
-            System.out.println("Do you want to edit info?");
+            if (mode == Mode.MANAGER) {
+                System.out.println("Do you want to edit info?");
 
-            String ans = sc.nextLine();
+                String ans = sc.nextLine();
 
-//            switch (ans) {
-//                case "yes":
-//                    managerEditTeacher();
-//            }
+                while (!ans.equals("exit")) {
+
+                    switch (ans) {
+                        case "yes":
+                            managerEditTeacher(searchTeacher);
+                            break;
+                        case "no":
+                            return;
+                        default:
+                            System.out.println("Not valid option!");
+                            break;
+                    }
+
+                }
+            }
+            else if (mode == Mode.ORMANAGER) {
+                System.out.println("Do you want to edit info or manage courses?");
+
+                String ans = sc.nextLine();
+
+                while (!ans.equals("exit")) {
+
+                    switch (ans) {
+                        case "edit info":
+                            managerEditTeacher(searchTeacher);
+                            break;
+                        case "manage courses":
+                            managerTeacherCourses(searchTeacher);
+                            break;
+                        case "exit":
+                            return;
+                        default:
+                            System.out.println("Not valid option!");
+                            break;
+                    }
+
+                }
+            }
+
         }
+    }
+
+    private void managerEditTeacher(Teacher searchTeacher) {
+        System.out.println(searchTeacher);
+        Mode curMode = Mode.TEACHER;
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "faculty":
+                    alterFaculty(curMode);
+                    break;
+                case "degree":
+                    alterDegree();
+                    break;
+                case "position":
+                    alterPosition();
+                    break;
+                case "phone":
+                    alterPhone(curMode);
+                    break;
+                case "email":
+                    alterEmail(curMode);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode);
+                    break;
+                case "gender":
+                    alterGender(curMode);
+                    break;
+            }
+        }
+    }
+
+    private void managerTeacherCourses(Teacher searchTeacher) {
+        System.out.println("Do you want to add or delete course?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            if (ans.equals("add") || ans.equals("delete")) {
+                System.out.println("Enter course`s id");
+
+                String id = sc.nextLine();
+
+                boolean found = false;
+
+                if (ans.equals("add")) {
+                    for (Course c : courses) {
+                        if (c.getId().equals(id)) {
+                            found = true;
+
+                            break;
+                        }
+                    }
+                }
+                else if (ans.equals("delete")) {
+                    for (Course c: searchTeacher.getCourses()) {
+                        if (c.getId().equals(id)) {
+                            found = true;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (found) {
+                    if (ans.equals("add")) {
+                        searchTeacher.addCourses(id);
+                    }
+                    else if (ans.equals("delete")) {
+                        searchTeacher.deleteCourse(id);
+                    }
+
+                    System.out.println("Success!");
+
+                }
+                else {
+                    System.out.println("Course not found!");
+                }
+
+            }
+
+            else {
+                System.out.println("Invalid option!");
+            }
+
+        }
+
     }
 
     private void managerFindStudent(Mode mode) {
@@ -662,6 +792,8 @@ public class Controller {
                 manager.setFaculty(faculty);
                 break;
         }
+
+        System.out.println("Success!");
     }
 
     private void alterDegree() {
@@ -690,6 +822,8 @@ public class Controller {
         }
 
         student.setDegree(degree);
+
+        System.out.println("Success!");
     }
 
     private void alterYearOfStudy() {
@@ -702,6 +836,8 @@ public class Controller {
 
             if (ind > -1 && ind < 8) {
                 student.setYearOfStudy(ind);
+
+                System.out.println("Success!");
             }
             else {
                 System.out.println("Not valid year of study!");
@@ -747,6 +883,8 @@ public class Controller {
         }
 
         teacher.setPosition(position);
+
+        System.out.println("Success!");
     }
 
 //  EXECUTOR
@@ -887,14 +1025,14 @@ public class Controller {
     }
 
     private void executorInfo() {
-        System.out.println(manager.getFullName());
+        System.out.println(executor);
         Mode curMode = Mode.EXECUTOR;
-
-        System.out.println("What do you want to edit?");
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
             ans = sc.nextLine();
 
             switch (ans) {
@@ -1111,6 +1249,8 @@ public class Controller {
                 executor.setPhone(ans);
                 break;
         }
+
+        System.out.println("Success!");
     }
 
     private void alterEmail(Mode mode) {
@@ -1135,6 +1275,8 @@ public class Controller {
                 executor.setEmail(ans);
                 break;
         }
+
+        System.out.println("Success!");
     }
 
     private void alterBdate(Mode mode) {
@@ -1147,7 +1289,7 @@ public class Controller {
         System.out.println("Enter birthdate`s year");
         String ans_year = sc.nextLine();
 
-        try{
+        try {
             int year = Integer.decode(ans_year);
             int month = Integer.decode(ans_month);
             int day = Integer.decode(ans_month);
@@ -1171,6 +1313,8 @@ public class Controller {
                     orManager.setBirthDate(date);
                     break;
             }
+
+            System.out.println("Success!");
         }
         catch (Exception e) {
             System.out.println("Invalid date!");
@@ -1212,6 +1356,8 @@ public class Controller {
                 executor.setGender(gender);
                 break;
         }
+
+        System.out.println("Success!");
     }
 
 //  EMPLOYEE

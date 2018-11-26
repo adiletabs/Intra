@@ -9,7 +9,11 @@ public class Student extends User implements ManagingCourses, Serializable {
     private double gpa;
     private ArrayList<String> courses;
 
-    private static int commonID = 0;
+    private static int commonID;
+
+    static {
+        commonID = 0;
+    }
 
     {
         yearOfStudy = 1;

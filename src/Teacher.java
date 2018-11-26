@@ -6,6 +6,10 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
     private Faculty faculty;
     private ArrayList<String> courses;
 
+    {
+        courses = new ArrayList<>();
+    }
+
     public Teacher (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
     }
@@ -24,6 +28,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
     @Override
     public ArrayList<Course> getCourses() {
         ArrayList<Course> curCourses = new ArrayList<>();
+
         for (String s: courses) {
             for (Course c: Controller.courses) {
                 if (c.getId().equals(s)) {
@@ -32,6 +37,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
                 }
             }
         }
+
         return curCourses;
     }
 

@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ORManager extends Employee implements Searching, Serializable {
 
