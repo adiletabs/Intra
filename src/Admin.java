@@ -7,17 +7,21 @@ public class Admin implements Serializable {
     private String login;
     private String password;
 
+    private final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
+    private final String FILE = "admin.txt";
+
     {
         login = "";
         password = "";
     }
 
-    private final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
-    private final String FILE = "admin.txt";
-
     public Admin() {
         getData();
     }
+
+    public String getLogin() { return login; }
+
+    public String getPassword() { return password; }
 
     public void addUser(String lastName, String name, String newLogin, Mode mode) {
         switch (mode) {
@@ -28,13 +32,13 @@ public class Admin implements Serializable {
                 addTeacher(lastName, name, newLogin);
                 break;
             case MANAGER:
-                addStudent(lastName, name, newLogin);
+                addManager(lastName, name, newLogin);
                 break;
             case ORMANAGER:
-                addTeacher(lastName, name, newLogin);
+                addORManager(lastName, name, newLogin);
                 break;
             case EXECUTOR:
-                addStudent(lastName, name, newLogin);
+                addExecutor(lastName, name, newLogin);
                 break;
         }
     }
@@ -43,30 +47,35 @@ public class Admin implements Serializable {
         for (User u: Controller.students) {
             if (u.getLogin().equals(login)) {
                 Controller.students.remove(u);
+
                 return true;
             }
         }
         for (User u: Controller.managers) {
             if (u.getLogin().equals(login)) {
                 Controller.managers.remove(u);
+
                 return true;
             }
         }
         for (User u: Controller.orManagers) {
             if (u.getLogin().equals(login)) {
                 Controller.orManagers.remove(u);
+
                 return true;
             }
         }
         for (User u: Controller.executors) {
             if (u.getLogin().equals(login)) {
                 Controller.executors.remove(u);
+
                 return true;
             }
         }
         for (User u: Controller.teachers) {
             if (u.getLogin().equals(login)) {
                 Controller.teachers.remove(u);
+
                 return true;
             }
         }
@@ -78,9 +87,11 @@ public class Admin implements Serializable {
 
         if (!Controller.executors.contains(executor)) {
             Controller.executors.add(executor);
+
+            Controller.saveExecutors();
         }
         else {
-            System.out.println(executor.getClass().toString() + " already exists!");
+            System.out.println(executor.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -89,9 +100,11 @@ public class Admin implements Serializable {
 
         if (!Controller.managers.contains(manager)) {
             Controller.managers.add(manager);
+
+            Controller.saveManagers();
         }
         else {
-            System.out.println(manager.getClass().toString() + " already exists!");
+            System.out.println(manager.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -100,9 +113,11 @@ public class Admin implements Serializable {
 
         if (!Controller.orManagers.contains(orManager)) {
             Controller.orManagers.add(orManager);
+
+            Controller.saveOrManagers();
         }
         else {
-            System.out.println(orManager.getClass().toString() + " already exists!");
+            System.out.println(orManager.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -111,9 +126,11 @@ public class Admin implements Serializable {
 
         if (!Controller.teachers.contains(teacher)) {
             Controller.teachers.add(teacher);
+
+            Controller.saveTeachers();
         }
         else {
-            System.out.println(teacher.getClass().toString() + " already exists!");
+            System.out.println(teacher.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -122,9 +139,11 @@ public class Admin implements Serializable {
 
         if (!Controller.students.contains(student)) {
             Controller.students.add(student);
+
+            Controller.saveStudents();
         }
         else {
-            System.out.println(student.getClass().toString() + " already exists!");
+            System.out.println(student.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
@@ -140,6 +159,7 @@ public class Admin implements Serializable {
             try {
                 r_login = firstLine.split(" ")[1];
                 r_password = secondLine.split(" ")[1];
+
                 login = r_login;
                 password = r_password;
             }

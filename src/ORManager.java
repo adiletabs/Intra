@@ -10,7 +10,6 @@ public class ORManager extends Employee implements Searching, Serializable {
     @Override
     public Student findStudent(String login) {
         Student student = null;
-
         for (Student s: Controller.students) {
             if (s.getLogin().equals(login)) {
                 student = s;
@@ -18,14 +17,12 @@ public class ORManager extends Employee implements Searching, Serializable {
                 break;
             }
         }
-
         return student;
     }
 
     @Override
     public Teacher findTeacher(String login) {
         Teacher teacher = null;
-
         for (Teacher t: Controller.teachers) {
             if (t.getLogin().equals(login)) {
                 teacher = t;
@@ -33,7 +30,6 @@ public class ORManager extends Employee implements Searching, Serializable {
                 break;
             }
         }
-
         return teacher;
     }
 

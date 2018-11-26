@@ -18,6 +18,23 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
 
     public void sendOrder(Order order) {
         Executor.orders.add(order);
+        Executor.saveOrders();
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesObj() {
+        ArrayList<Course> curCourses = new ArrayList<>();
+
+        for (Course c: Controller.courses) {
+            for (String s: courses) {
+                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin()))) {
+                    curCourses.add(c);
+                }
+            }
+
+        }
+
+        return curCourses;
     }
 
     @Override

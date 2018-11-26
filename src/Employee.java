@@ -1,8 +1,7 @@
-import java.util.Date;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-public abstract class Employee extends User implements Messageable {
+public abstract class Employee extends User implements Messaging, Serializable {
     private ArrayList<Message> messages;
 
     {
@@ -14,18 +13,31 @@ public abstract class Employee extends User implements Messageable {
     }
 
     @Override
-    public boolean sendMessage(String login, String title, String text) {
-        Date now = Calendar.getInstance().getTime();
-        Message msg = new Message(title, text, getFullName(), now);
-        boolean sent = false;
-        for (Employee e: Controller.employees) {
+    public void sendMessage(Message message, String login) {
+        for (Employee e: Controller.teachers) {
             if (e.getLogin().equals(login)) {
-                e.messages.add(msg);
-                sent = true;
-                break;
+                e.messages.add(message);
+                return;
             }
         }
-        return sent;
+        for (Employee e: Controller.executors) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
+            }
+        }
+        for (Employee e: Controller.orManagers) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
+            }
+        }
+        for (Employee e: Controller.managers) {
+            if (e.getLogin().equals(login)) {
+                e.messages.add(message);
+                return;
+            }
+        }
     }
 
     @Override
@@ -40,6 +52,7 @@ public abstract class Employee extends User implements Messageable {
     @Override
     public String readMessage(String title) {
         String res = "Error. There is no message with such title\n";
+
         for (Message msg: messages) {
             if (msg.getTitle().equals(title)) {
                 res = msg.toString() + '\n';

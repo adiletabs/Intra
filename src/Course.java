@@ -58,15 +58,12 @@ public class Course implements ManagingFiles, Serializable {
     @Override
     public CourseFile getFile(String title) {
         CourseFile file = null;
-
         for (CourseFile courseFile: files) {
             if (courseFile.getTitle().equals(title)) {
                 file = courseFile;
-
                 break;
             }
         }
-
         return file;
     }
 
@@ -80,7 +77,6 @@ public class Course implements ManagingFiles, Serializable {
         for (CourseFile courseFile: files) {
             if (courseFile.getTitle().equals(title)) {
                 files.remove(courseFile);
-
                 break;
             }
         }

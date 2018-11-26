@@ -24,11 +24,9 @@ public class Manager extends Employee implements ManagingNews, Searching, Serial
     @Override
     public Student findStudent(String login) {
         Student student = null;
-
         for (Student s: Controller.students) {
             if (s.getLogin().equals(login)) {
                 student = s;
-
                 break;
             }
         }
@@ -38,11 +36,9 @@ public class Manager extends Employee implements ManagingNews, Searching, Serial
     @Override
     public Teacher findTeacher(String login) {
         Teacher teacher = null;
-
         for (Teacher t: Controller.teachers) {
             if (t.getLogin().equals(login)) {
                 teacher = t;
-
                 break;
             }
         }

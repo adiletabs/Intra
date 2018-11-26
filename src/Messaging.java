@@ -1,5 +1,7 @@
-public interface Messageable {
-    boolean sendMessage(String login, String title, String text);
+public interface Messaging {
+    void sendMessage(Message message, String login);
+
     String getMessages();
+
     String readMessage(String title);
 }

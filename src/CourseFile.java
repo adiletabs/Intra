@@ -1,5 +1,9 @@
-public class CourseFile {
-    private String title, text, owner;
+import java.io.Serializable;
+
+public class CourseFile implements Serializable {
+    private String title;
+    private String text;
+    private String owner;
 
     public CourseFile(String title, String text, String owner) {
         this.title = title;
