@@ -31,7 +31,7 @@ public class Message implements Serializable {
     public String toString() {
         String dateInfo = new SimpleDateFormat("dd.MM.yyyy").format(date);
         String timeInfo = new SimpleDateFormat("HH:mm").format(date);
-        String info = title + "\n\n" + text + "\n\n";
+        String info = title + '\n' + text + '\n';
         info += "Sender: " + sender + '\n' + "Date: " + dateInfo + '\n' + "Time: " + timeInfo + '\n';
         return info;
     }
@@ -44,4 +44,7 @@ public class Message implements Serializable {
         return msg.title.equals(title) && msg.text.equals(text) &&
                 msg.sender.equals(sender) && msg.date.equals(date);
     }
+
+    @Override
+    public int hashCode() { return title.hashCode(); }
 }

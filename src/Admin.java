@@ -54,28 +54,24 @@ public class Admin implements Serializable {
         for (User u: Controller.managers) {
             if (u.getLogin().equals(login)) {
                 Controller.managers.remove(u);
-
                 return true;
             }
         }
         for (User u: Controller.orManagers) {
             if (u.getLogin().equals(login)) {
                 Controller.orManagers.remove(u);
-
                 return true;
             }
         }
         for (User u: Controller.executors) {
             if (u.getLogin().equals(login)) {
                 Controller.executors.remove(u);
-
                 return true;
             }
         }
         for (User u: Controller.teachers) {
             if (u.getLogin().equals(login)) {
                 Controller.teachers.remove(u);
-
                 return true;
             }
         }
@@ -87,7 +83,6 @@ public class Admin implements Serializable {
 
         if (!Controller.executors.contains(executor)) {
             Controller.executors.add(executor);
-
             Controller.saveExecutors();
         }
         else {
@@ -139,7 +134,6 @@ public class Admin implements Serializable {
 
         if (!Controller.students.contains(student)) {
             Controller.students.add(student);
-
             Controller.saveStudents();
         }
         else {
@@ -172,8 +166,10 @@ public class Admin implements Serializable {
         }
     }
 
-    public String toString() { return "Admin login: " + login; }
+    @Override
+    public String toString() { return "Admin login: " + login + '\n'; }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (!(obj instanceof Admin)) return false;
@@ -181,5 +177,6 @@ public class Admin implements Serializable {
         return !login.equals("") && a.login.equals(login);
     }
 
+    @Override
     public int hashCode() { return login.hashCode(); }
 }

@@ -13,52 +13,54 @@ public abstract class Employee extends User implements Messaging, Serializable {
     }
 
     @Override
-    public void sendMessage(Message message, String login) {
+    public boolean sendMessage(Message message, String login) {
         for (Employee e: Controller.teachers) {
             if (e.getLogin().equals(login)) {
                 e.messages.add(message);
-                return;
+                return true;
             }
         }
         for (Employee e: Controller.executors) {
             if (e.getLogin().equals(login)) {
                 e.messages.add(message);
-                return;
+                return true;
             }
         }
         for (Employee e: Controller.orManagers) {
             if (e.getLogin().equals(login)) {
                 e.messages.add(message);
-                return;
+                return true;
             }
         }
         for (Employee e: Controller.managers) {
             if (e.getLogin().equals(login)) {
                 e.messages.add(message);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     @Override
-    public String getMessages() {
-        String res = "";
+    public ArrayList<String> getMessages() {
+        ArrayList<String> messagesText =  new ArrayList<>();
         for (Message msg: messages) {
-            res += msg.getTitle() + "\nSender: " + msg.getSender() + "\n\n";
+            messagesText.add(msg.getTitle() + "\nSender: " + msg.getSender() + "\n\n");
         }
-        return messages.isEmpty() ? "No messages found" : res;
+        return messagesText;
     }
 
     @Override
-    public String readMessage(String title) {
-        String res = "Error. There is no message with such title\n";
-
-        for (Message msg: messages) {
-            if (msg.getTitle().equals(title)) {
-                res = msg.toString() + '\n';
-                break;
-            }
-        }
-        return res;
+    public String readMessage(int ind) {
+        return messages.get(ind).toString();
     }
+
+    @Override
+    public String toString() { return super.toString(); }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

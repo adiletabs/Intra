@@ -17,8 +17,13 @@ public class Order extends Message implements Serializable {
 
     @Override
     public String toString() {
-        String info = super.toString();
-        info += "Status: " + status.toString() + '\n';
-        return info;
+        String info = "Status: " + status.toString() + '\n';
+        return super.toString() + info;
     }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

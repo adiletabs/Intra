@@ -10,16 +10,16 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
         loadOrders();
     }
 
-    public Executor (String lastName, String firstName, String login) {
-        super(lastName, firstName, login);
-    }
-
     private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
     private static final String ORDERS = "orders.out";
 
     private static final String EXCEPT_CLASS = "Class not found!";
     private static final String EXCEPT_FILE = "File not found!";
     private static final String EXCEPT_IO = "Input / Output exception!";
+
+    public Executor (String lastName, String firstName, String login) {
+        super(lastName, firstName, login);
+    }
 
     @Override
     public ArrayList<Order> getOrders(OrderStatus status) {
@@ -32,7 +32,7 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
         return curOrders;
     }
 
-    @Override
+    @Override            // not used
     public Order getOrder(String title, String sender, Date date) {
         Order order = null;
         for (Order o: orders) {
@@ -58,7 +58,6 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
     private void reply(String title, String sender, OrderStatus status) {
         String text = "";
         Date now = Calendar.getInstance().getTime();
-
         switch (status) {
             case DONE:
                 text = "Your order is done. Thank you!";
@@ -70,7 +69,7 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
                 text = "Your order is rejected. Sorry!";
                 break;
         }
-        Message message = new Message("Reply to " + title, text, getLogin(), now);
+        Message message = new Message("Re: " + title, text, getLogin(), now);
         sendMessage(message, sender);
     }
 
@@ -105,4 +104,13 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
             System.out.println(ORDERS + ": " + EXCEPT_IO);
         }
     }
+
+    @Override
+    public String toString() { return super.toString(); }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

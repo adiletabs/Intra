@@ -13,7 +13,6 @@ public class ORManager extends Employee implements Searching, Serializable {
         for (Student s: Controller.students) {
             if (s.getLogin().equals(login)) {
                 student = s;
-
                 break;
             }
         }
@@ -26,7 +25,6 @@ public class ORManager extends Employee implements Searching, Serializable {
         for (Teacher t: Controller.teachers) {
             if (t.getLogin().equals(login)) {
                 teacher = t;
-
                 break;
             }
         }
@@ -34,7 +32,23 @@ public class ORManager extends Employee implements Searching, Serializable {
     }
 
     @Override
-    public Course findCourse(String courseName, ArrayList<String> teachers) {
-        return null;
+    public Course findCourse(String id) {
+        Course course = null;
+        for (Course c: Controller.courses) {
+            if (c.getId().equals(id)) {
+                course = c;
+                break;
+            }
+        }
+        return course;
     }
+
+    @Override
+    public String toString() { return super.toString(); }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

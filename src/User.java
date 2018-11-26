@@ -46,5 +46,6 @@ public abstract class User extends Person implements Serializable {
         return u.login.equals(login);
     }
 
+    @Override
     public int hashCode() { return login.hashCode(); }
 }

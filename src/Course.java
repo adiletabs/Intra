@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Course implements ManagingFiles, Serializable {
     private String courseName;
+    private String id;
     private ArrayList<String> teacherLogins;
     private ArrayList<String> studentLogins;
     private int creditNumber;
@@ -11,14 +12,24 @@ public class Course implements ManagingFiles, Serializable {
     private HashMap<String, int[]> scores;
     private ArrayList<CourseFile> files;
 
-    public Course (String courseName, int creditNumber, ArrayList<String> teacherLogins) {
+    {
+        teacherLogins = new ArrayList<String>();
+    }
+
+    public Course (String id, String courseName, int creditNumber) {
+        this.id = id;
         this.courseName = courseName;
         this.creditNumber = creditNumber;
-        this.teacherLogins = teacherLogins;
     }
 
     public String getCourseName() { return courseName; }
     public void setCourseName(String courseName) { this.courseName = courseName; }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public int getCreditNumber() { return creditNumber; }
+    public void setCreditNumber(int creditNumber) { this.creditNumber = creditNumber; }
 
     public ArrayList<String> getTeacherLogins() { return teacherLogins; }
     public void addTeacher(String login) { teacherLogins.add(login); }
@@ -27,9 +38,6 @@ public class Course implements ManagingFiles, Serializable {
     public ArrayList<String> getStudentLogins() { return studentLogins; }
     public void addStudent(String login) { studentLogins.add(login); }
     private void deleteStudent(String login) { studentLogins.remove(login); }
-
-    public int getCreditNumber() { return creditNumber; }
-    public void setCreditNumber(int creditNumber) { this.creditNumber = creditNumber; }
 
     public CourseStatus getStatus(String login) {
         return statuses.get(login);
@@ -81,4 +89,19 @@ public class Course implements ManagingFiles, Serializable {
             }
         }
     }
+
+    public String toString() {
+        String nameInfo = "Course: " + courseName + '\n';
+        String creditInfo = "Credit number: " + creditNumber + '\n';
+        return nameInfo + creditInfo;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) return  true;
+        if (!(obj instanceof Course)) return false;
+        Course c = (Course) obj;
+        return c.id.equals(id) && c.courseName.equals(courseName) && c.creditNumber == creditNumber;
+    }
+
+    public int hashCode() { return id.hashCode(); }
 }

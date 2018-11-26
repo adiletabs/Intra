@@ -40,55 +40,48 @@ public class Student extends User implements ManagingCourses, Serializable {
     }
 
     public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public Degree getDegree() { return degree; }
+    public void setDegree(Degree degree) { this.degree = degree; }
+
+    public Faculty getFaculty() { return faculty; }
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
 
     public int getYearOfStudy() { return yearOfStudy; }
     public void setYearOfStudy(int yearOfStudy) { this.yearOfStudy = yearOfStudy; }
 
     public void incrementYearOfStudy() { yearOfStudy++; }
 
-    @Override
-    public ArrayList<String> getCourses() {
-        return null;
-    }
+    public double getGpa() { return gpa; }
+    public void setGpa(double gpa) { this.gpa = gpa; }
 
     @Override
-    public ArrayList<Course> getCoursesObj() {
+    public ArrayList<Course> getCourses() {
         ArrayList<Course> curCourses = new ArrayList<>();
-
-        for (Course c: Controller.courses) {
-            for (String s: courses) {
-                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin())
-                        || c.getStudentLogins().contains(getLogin()))) {
+        for (String s: courses) {
+            for (Course c: Controller.courses) {
+                if (c.getId().equals(s)) {
                     curCourses.add(c);
+                    break;
                 }
             }
-
         }
         return curCourses;
     }
 
     @Override
-    public Course getCourse(String courseName) {
-        return null;
-    }
+    public void addCourses(String courseId) { courses.add(courseId); }
 
     @Override
-    public void addCourses(Course course) {
-
-    }
+    public void deleteCourse(String courseId) { courses.remove(courseId); }
 
     @Override
-    public void deleteCourse(Course course) {
+    public String toString() { return super.toString(); }
 
-    }
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
 
-//    @Override
-//    public ArrayList<String> getCourses() {
-//        String res = getFullName() + " is not registered for any courses\n";
-//        if (!courses.isEmpty()) {
-//            res = "Courses of " + getFullName() + ":\n\n";
-//            for (String s: courses) res += (s + '\n');
-//        }
-//        return res;
-//    }
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

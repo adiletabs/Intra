@@ -17,7 +17,7 @@ public class CourseFile implements Serializable {
 
     @Override
     public String toString() {
-        return title + "\n\n" + text;
+        return title + '\n' + text;
     }
 
     @Override
@@ -27,4 +27,6 @@ public class CourseFile implements Serializable {
         CourseFile cf = (CourseFile) obj;
         return cf.title.equals(title) && cf.text.equals(text) && cf.owner.equals(owner);
     }
+
+    public int hashCode() { return title.hashCode(); }
 }

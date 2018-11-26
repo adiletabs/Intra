@@ -5,5 +5,5 @@ public interface Searching {
 
     Teacher findTeacher(String login);
 
-    Course findCourse(String courseName, ArrayList<String> teachers);
+    Course findCourse(String id);
 }

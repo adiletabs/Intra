@@ -46,7 +46,26 @@ public class Manager extends Employee implements ManagingNews, Searching, Serial
     }
 
     @Override
-    public Course findCourse(String courseName, ArrayList<String> teachers) {
-        return null;
+    public Course findCourse(String id) {
+        Course course = null;
+        for (Course c: Controller.courses) {
+            if (c.getId().equals(id)) {
+                course = c;
+                break;
+            }
+        }
+        return course;
     }
+
+    @Override
+    public String toString() {
+        String facultyInfo = "Faculty: " + faculty.toString() + '\n';
+        return super.toString() + facultyInfo;
+    }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

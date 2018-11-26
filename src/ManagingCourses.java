@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 
 public interface ManagingCourses {
-    ArrayList<String> getCourses();
 
-    ArrayList<Course> getCoursesObj();
+    ArrayList<Course> getCourses();
 
-    Course getCourse(String courseName);
+    void addCourses(String courseId);
 
-    void addCourses(Course course);
-
-    void deleteCourse(Course course);
+    void deleteCourse(String courseId);
 }
