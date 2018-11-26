@@ -5,9 +5,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/executors.out" beforeDir="false" afterPath="$PROJECT_DIR$/executors.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers.out" beforeDir="false" afterPath="$PROJECT_DIR$/managers.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ormanagers.out" beforeDir="false" afterPath="$PROJECT_DIR$/ormanagers.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Executor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Executor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Intranet/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Messaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Messaging.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teachers.out" beforeDir="false" afterPath="$PROJECT_DIR$/teachers.out" afterDir="false" />
     </list>
@@ -63,7 +68,7 @@
         <counts>
           <entry key="class" value="4" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="169" />
+          <entry key="java" value="170" />
           <entry key="out" value="7" />
           <entry key="txt" value="6" />
         </counts>
@@ -71,19 +76,19 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="4" />
-          <entry key="JAVA" value="169" />
+          <entry key="JAVA" value="170" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="17853" />
+          <entry key="java" value="18458" />
           <entry key="txt" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="17853" />
+          <entry key="JAVA" value="18458" />
           <entry key="PLAIN_TEXT" value="43" />
         </counts>
       </usages-collector>
@@ -103,33 +108,48 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="544" column="22" lean-forward="true" selection-start-line="544" selection-start-column="22" selection-end-line="544" selection-end-column="22" />
+            <state relative-caret-position="118">
+              <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2484#2931#0" />
                 <element signature="e#4166#4711#0" />
-                <element signature="e#4717#5759#0" />
                 <element signature="e#6597#7387#0" />
                 <element signature="e#7385#7492#0" />
                 <element signature="e#8070#8316#0" />
                 <element signature="e#13045#13965#0" />
                 <element signature="e#13983#15152#0" />
-                <element signature="e#6302#7510#0" />
                 <element signature="e#7516#8955#0" />
                 <element signature="e#8961#9273#0" />
                 <element signature="e#9279#9673#0" />
-                <element signature="e#9679#9833#0" />
+                <element signature="e#17283#18436#0" />
+                <element signature="e#18442#19502#0" />
+                <element signature="e#19164#19611#0" />
+                <element signature="e#19627#19807#0" />
                 <element signature="e#9839#10413#0" />
                 <element signature="e#10419#10993#0" />
                 <element signature="e#10999#11572#0" />
                 <element signature="e#11578#12166#0" />
                 <element signature="e#12172#12753#0" />
+                <element signature="e#22705#22813#0" />
                 <element signature="e#12759#13226#0" />
                 <element signature="e#13232#13699#0" />
                 <element signature="e#13705#14172#0" />
                 <element signature="e#14178#14655#0" />
                 <element signature="e#14661#15133#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Admin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1890">
+              <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#361#362#0" expanded="true" />
+                <element signature="e#386#387#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,6 +217,8 @@
     <findStrings>
       <find>getClass</find>
       <find>date</find>
+      <find>Invalid login</find>
+      <find>Invalid login or password!</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,7 +250,6 @@
         <option value="$PROJECT_DIR$/src/ManagingFiles.java" />
         <option value="$PROJECT_DIR$/src/Course.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Admin.java" />
         <option value="$PROJECT_DIR$/src/log.txt" />
         <option value="$PROJECT_DIR$/src/ManagingCourses.java" />
         <option value="$PROJECT_DIR$/src/Student.java" />
@@ -238,6 +259,7 @@
         <option value="$PROJECT_DIR$/src/Person.java" />
         <option value="$PROJECT_DIR$/src/Employee.java" />
         <option value="$PROJECT_DIR$/src/Messaging.java" />
+        <option value="$PROJECT_DIR$/src/Admin.java" />
         <option value="$PROJECT_DIR$/src/Controller.java" />
       </list>
     </option>
@@ -277,7 +299,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543221981181" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543223889409" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -346,8 +368,8 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.09693053" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31502423" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.09693053" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31502423" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -549,18 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagingCourses.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -705,30 +715,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="544" column="22" lean-forward="true" selection-start-line="544" selection-start-column="22" selection-end-line="544" selection-end-column="22" />
+        <state relative-caret-position="1890">
+          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2484#2931#0" />
+            <element signature="e#361#362#0" expanded="true" />
+            <element signature="e#386#387#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#4166#4711#0" />
-            <element signature="e#4717#5759#0" />
             <element signature="e#6597#7387#0" />
             <element signature="e#7385#7492#0" />
             <element signature="e#8070#8316#0" />
             <element signature="e#13045#13965#0" />
             <element signature="e#13983#15152#0" />
-            <element signature="e#6302#7510#0" />
             <element signature="e#7516#8955#0" />
             <element signature="e#8961#9273#0" />
             <element signature="e#9279#9673#0" />
-            <element signature="e#9679#9833#0" />
+            <element signature="e#17283#18436#0" />
+            <element signature="e#18442#19502#0" />
+            <element signature="e#19164#19611#0" />
+            <element signature="e#19627#19807#0" />
             <element signature="e#9839#10413#0" />
             <element signature="e#10419#10993#0" />
             <element signature="e#10999#11572#0" />
             <element signature="e#11578#12166#0" />
             <element signature="e#12172#12753#0" />
+            <element signature="e#22705#22813#0" />
             <element signature="e#12759#13226#0" />
             <element signature="e#13232#13699#0" />
             <element signature="e#13705#14172#0" />

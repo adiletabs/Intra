@@ -55,10 +55,13 @@ public class Controller {
 
     public static ArrayList<News> news = new ArrayList<News>();
 
+//  MAIN METHOD
     public void begin() {
         System.out.println("Are you enter as admin or user?");
 
         String ans = sc.nextLine().toLowerCase();
+
+        if (!(ans.equals("user") || ans.equals("admin"))) return;
 
         System.out.println("Enter your login and password (2 lines)");
 
@@ -73,26 +76,15 @@ public class Controller {
                 sessionUser(login, password);
                 break;
         }
+
+        saveData();
     }
 
-    public static void writeLog(String msg) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + LOG, true));
-
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_PATTERN);
-
-            bw.write(dtf.format(LocalDateTime.now())+ " - " + msg + "\n");
-
-            bw.flush();
-            bw.close();
-        }
-        catch (IOException e) {
-            System.out.println(EXCEPT_IO);
-        }
-    }
-
+//  USER
     private void sessionUser(String login, String password) {
         ArrayList<User> list = new ArrayList<>();
+
+        boolean found = false;
 
         list.addAll(teachers);
         list.addAll(students);
@@ -103,6 +95,8 @@ public class Controller {
         for (User u: list) {
             if (u.getLogin().equals(login) && u.getPassword().equals(password)) {
                 user = u;
+
+                found = true;
 
                 Controller.writeLog("User " + u.getLogin() + " logged in!");
 
@@ -123,14 +117,18 @@ public class Controller {
                         sessionExecutor();
                         break;
                 }
-//                System.out.println(user);
 
-                return;
+                break;
             }
         }
+        if (!found) {
+            System.out.println("Invalid login or password!");
+        }
+
 
     }
 
+//  STUDENT
     private void sessionStudent() {
         Student student = (Student) user;
         mode = Mode.STUDENT;
@@ -152,6 +150,7 @@ public class Controller {
         }
     }
 
+//  TEACHER
     private void sessionTeacher() {
         teacher = (Teacher) user;
         mode = Mode.TEACHER;
@@ -164,24 +163,32 @@ public class Controller {
 
         while (!ans.equals("exit")) {
             System.out.println("Choose the option you want");
-            System.out.println("1. Courses");
-            System.out.println("2. Schedule");
+            System.out.println("1. Send Message");
+            System.out.println("2. Show Messages");
             System.out.println("3. News");
-            System.out.println("4. Send order");
+            System.out.println("4. Courses");
+            System.out.println("5. Schedule");
+            System.out.println("6. Send order");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "1":
-                    teacherCourses();
+                    writeMessage();
                     break;
                 case "2":
-                    showSchedule();
+                    showMessages();
                     break;
                 case "3":
                     showNews();
                     break;
                 case "4":
+                    teacherCourses();
+                    break;
+                case "5":
+                    showSchedule();
+                    break;
+                case "6":
                     sendOrder();
                     break;
                 case "exit":
@@ -335,6 +342,7 @@ public class Controller {
         teacher.sendOrder(order);
     }
 
+// MANAGER
     private void sessionManager() {
         manager = (Manager) user;
         mode = Mode.MANAGER;
@@ -342,6 +350,7 @@ public class Controller {
 
     }
 
+//  ORMANAGER
     private void sessionORManager() {
         orManager = (ORManager) user;
         mode = Mode.ORMANAGER;
@@ -349,6 +358,7 @@ public class Controller {
 
     }
 
+//  EXECUTOR
     private void sessionExecutor() {
         executor = (Executor) user;
         mode = Mode.EXECUTOR;
@@ -479,93 +489,7 @@ public class Controller {
         Executor.saveOrders();
     }
 
-    private void showMessages() {
-        Employee employee = null;
-
-        switch (mode) {
-            case TEACHER:
-                employee = teacher;
-                break;
-            case MANAGER:
-                employee = manager;
-                break;
-            case ORMANAGER:
-                employee = orManager;
-                break;
-            case EXECUTOR:
-                employee = executor;
-                break;
-            default:
-                return;
-        }
-
-        System.out.println(employee.getMessages());
-
-        System.out.println("Which message you want to show?");
-
-        String ans = "";
-
-        while (!ans.equals("exit")) {
-            ans = sc.nextLine();
-
-            try {
-                int ind = Integer.decode(ans);
-
-                ind--;
-
-                if (ind > -1 && ind < curCourses.size()) {
-                    employee.readMessage(ind);
-                }
-                else {
-                    System.out.println("Wrong selection");
-                }
-            }
-            catch (Exception e) {
-                System.out.println("Wrong selection");
-            }
-        }
-
-    }
-
-    private void writeMessage() {
-        Employee employee;
-
-        switch (mode) {
-            case TEACHER:
-                employee = teacher;
-                break;
-            case MANAGER:
-                employee = manager;
-                break;
-            case ORMANAGER:
-                employee = orManager;
-                break;
-            case EXECUTOR:
-                employee = executor;
-                break;
-            default:
-                return;
-        }
-
-        System.out.println("Write reciever`s login");
-        String login = sc.nextLine();
-
-        System.out.println("Write message`s title");
-        String title = sc.nextLine();
-
-        System.out.println("Write message`s text");
-        String text = sc.nextLine();
-
-        Message message = new Message(title, text, employee.getLogin(), Calendar.getInstance().getTime());
-
-        if (employee.sendMessage(message, login)) {
-            System.out.println("Message sent!");
-        }
-        else {
-            System.out.println("Login not found!");
-        }
-    }
-
+//  ADMIN
     private void sessionAdmin(String login, String password) {
         admin = new Admin();
 
@@ -574,7 +498,7 @@ public class Controller {
 
             Controller.writeLog("Admin logged in!");
 
-            while (ans != "exit") {
+            while (!ans.equals("exit")) {
                 System.out.println("Choose the option!");
                 System.out.println("1. Add new user");
                 System.out.println("2. Delete user");
@@ -689,13 +613,119 @@ public class Controller {
         }
     }
 
-    private void loadData() {
-        loadStudents();
-        loadTeachers();
-        loadExecutors();
-        loadManagers();
-        loadOrManagers();
+//  EMPLOYEE
+    private void showMessages() {
+        Employee employee = null;
+
+        switch (mode) {
+            case TEACHER:
+                employee = teacher;
+                break;
+            case MANAGER:
+                employee = manager;
+                break;
+            case ORMANAGER:
+                employee = orManager;
+                break;
+            case EXECUTOR:
+                employee = executor;
+                break;
+            default:
+                return;
+        }
+
+        System.out.println(employee.getMessages());
+
+        System.out.println("Which message you want to show?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < curCourses.size()) {
+                    employee.readMessage(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Wrong selection");
+            }
+        }
+
     }
+
+    private void writeMessage() {
+        Employee employee;
+
+        switch (mode) {
+            case TEACHER:
+                employee = teacher;
+                break;
+            case MANAGER:
+                employee = manager;
+                break;
+            case ORMANAGER:
+                employee = orManager;
+                break;
+            case EXECUTOR:
+                employee = executor;
+                break;
+            default:
+                return;
+        }
+
+        System.out.println("Write reciever`s login");
+        String login = sc.nextLine();
+
+        System.out.println("Write message`s title");
+        String title = sc.nextLine();
+
+        System.out.println("Write message`s text");
+        String text = sc.nextLine();
+
+        Message message = new Message(title, text, employee.getLogin(), Calendar.getInstance().getTime());
+
+        if (employee.sendMessage(message, login)) {
+            System.out.println("Message sent!");
+        }
+        else {
+            System.out.println("Login not found!");
+        }
+    }
+
+//  LOGS
+    private static void writeLog(String msg) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + LOG, true));
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_PATTERN);
+
+            bw.write(dtf.format(LocalDateTime.now())+ " - " + msg + "\n");
+
+            bw.flush();
+            bw.close();
+        }
+        catch (IOException e) {
+            System.out.println(EXCEPT_IO);
+        }
+    }
+
+//  SERIALIZATION
+    private void loadData() {
+    loadStudents();
+    loadTeachers();
+    loadExecutors();
+    loadManagers();
+    loadOrManagers();
+}
 
     private void loadStudents() {
         try {
@@ -796,7 +826,16 @@ public class Controller {
         }
     }
 
-    public static void saveStudents() {
+//  DESERIALIZAION
+    private static void saveData() {
+        saveManagers();
+        saveOrManagers();
+        saveTeachers();
+        saveStudents();
+        saveExecutors();
+    }
+
+    private static void saveStudents() {
         try {
             ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(STUDENTS));
 
@@ -813,7 +852,7 @@ public class Controller {
         }
     }
 
-    public static void saveTeachers() {
+    private static void saveTeachers() {
         try {
             ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(TEACHERS));
 
@@ -830,7 +869,7 @@ public class Controller {
         }
     }
 
-    public static void saveManagers() {
+    private static void saveManagers() {
         try {
             ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(MANAGERS));
 
@@ -847,7 +886,7 @@ public class Controller {
         }
     }
 
-    public static void saveOrManagers() {
+    private static void saveOrManagers() {
         try {
             ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(ORMANAGERS));
 
@@ -864,7 +903,7 @@ public class Controller {
         }
     }
 
-    public static void saveExecutors() {
+    private static void saveExecutors() {
         try {
             ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(EXECUTORS));
 
