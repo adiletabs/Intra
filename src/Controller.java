@@ -111,7 +111,7 @@ public class Controller {
                     case "Manager":
                         sessionManager();
                         break;
-                    case "OPManager":
+                    case "ORManager":
                         sessionORManager();
                         break;
                     case "Executor":
@@ -135,32 +135,36 @@ public class Controller {
 
         System.out.println("You are logged as student!");
 
-        System.out.println("Choose the option you want");
-        System.out.println("1. Courses");
-        System.out.println("2. Transcript");
-        System.out.println("3. News");
-        System.out.println("4. Registration");
-        System.out.println("5. Edit Info");
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Courses");
+            System.out.println("2. Transcript");
+            System.out.println("3. News");
+            System.out.println("4. Registration");
+            System.out.println("5. Edit Info");
 
 
-        String ans = sc.nextLine();
+            ans = sc.nextLine();
 
-        switch (ans) {
-            case "1":
-                showCourses(Mode.STUDENT);
-                break;
-            case "2":
-                studentTranscript();
-                break;
-            case "3":
-                showNews();
-                break;
-            case "4":
-                studentRegistration();
-                break;
-            case "5":
-                studentInfo();
-                break;
+            switch (ans) {
+                case "1":
+                    showCourses(Mode.STUDENT);
+                    break;
+                case "2":
+                    studentTranscript();
+                    break;
+                case "3":
+                    showNews();
+                    break;
+                case "4":
+                    studentRegistration();
+                    break;
+                case "5":
+                    studentInfo();
+                    break;
+            }
         }
     }
 
@@ -201,25 +205,26 @@ public class Controller {
     }
 
     private void studentInfo() {
-        System.out.println(student);
         Mode curMode = Mode.STUDENT;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(student);
+
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(curMode);
+                    alterFaculty(curMode, student);
                     break;
                 case "degree":
-                    alterDegree();
+                    alterDegree(student);
                     break;
                 case "year of study":
-                    alterYearOfStudy();
+                    alterYearOfStudy(student);
                     break;
                 case "phone":
                     alterPhone(curMode, student);
@@ -360,25 +365,22 @@ public class Controller {
     }
 
     private void teacherInfo() {
-        System.out.println(teacher);
         Mode curMode = Mode.TEACHER;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(teacher);
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(curMode);
-                    break;
-                case "degree":
-                    alterDegree();
+                    alterFaculty(curMode, teacher);
                     break;
                 case "position":
-                    alterPosition();
+                    alterPosition(teacher);
                     break;
                 case "phone":
                     alterPhone(curMode, teacher);
@@ -443,7 +445,7 @@ public class Controller {
 
         String ans = "";
 
-        System.out.println("You are logged as teacher!");
+        System.out.println("You are logged as manager!");
 
         while (!ans.equals("exit")) {
             System.out.println("Choose the option you want");
@@ -507,19 +509,19 @@ public class Controller {
     }
 
     private void managerInfo() {
-        System.out.println(manager);
         Mode curMode = Mode.MANAGER;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(manager);
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(curMode);
+                    alterFaculty(curMode, manager);
                     break;
                 case "phone":
                     alterPhone(curMode, manager);
@@ -542,7 +544,51 @@ public class Controller {
         orManager = (ORManager) user;
         mode = Mode.ORMANAGER;
 
+        String ans = "";
 
+        System.out.println("You are logged as OR manager!");
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Send Message");
+            System.out.println("2. Show Messages");
+            System.out.println("3. News");
+            System.out.println("4. Find Teacher");
+            System.out.println("5. Find Student");
+            System.out.println("6. Find Course");
+            System.out.println("7. Edit Info");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    writeMessage();
+                    break;
+                case "2":
+                    showMessages();
+                    break;
+                case "3":
+                    showNews();
+                    break;
+                case "4":
+                    managerFindTeacher(Mode.ORMANAGER);
+                    break;
+                case "5":
+                    managerFindStudent(Mode.ORMANAGER);
+                    break;
+                case "6":
+                    managerFindCourse(Mode.ORMANAGER);
+                    break;
+                case "7":
+                    orManagerInfo();
+                    break;
+                case "exit":
+                    return;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
     }
 
     private void orManagerInfo() {
@@ -616,11 +662,12 @@ public class Controller {
                 }
             }
             else if (mode == Mode.ORMANAGER) {
-                System.out.println("Do you want to edit info or manage courses?");
-
-                String ans = sc.nextLine();
+                String ans = "";
 
                 while (!ans.equals("exit")) {
+                    System.out.println("Do you want to edit info or manage courses?");
+
+                    ans = sc.nextLine();
 
                     switch (ans) {
                         case "edit info":
@@ -641,25 +688,22 @@ public class Controller {
     }
 
     private void managerEditTeacher(Teacher searchTeacher) {
-        System.out.println(searchTeacher);
         Mode curMode = Mode.TEACHER;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(searchTeacher);
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(curMode);
-                    break;
-                case "degree":
-                    alterDegree();
+                    alterFaculty(curMode, searchTeacher);
                     break;
                 case "position":
-                    alterPosition();
+                    alterPosition(searchTeacher);
                     break;
                 case "phone":
                     alterPhone(curMode, searchTeacher);
@@ -678,11 +722,11 @@ public class Controller {
     }
 
     private void managerTeacherCourses(Teacher searchTeacher) {
-        System.out.println("Do you want to add or delete course?");
-
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("Do you want to add or delete course?");
+
             ans = sc.nextLine();
 
             if (ans.equals("add") || ans.equals("delete")) {
@@ -726,6 +770,10 @@ public class Controller {
                     System.out.println("Course not found!");
                 }
 
+            }
+
+            else if (ans.equals("exit")) {
+                return;
             }
 
             else {
@@ -779,11 +827,12 @@ public class Controller {
                 }
             }
             else if (mode == Mode.ORMANAGER) {
-                System.out.println("Do you want to edit info or manage courses?");
-
-                String ans = sc.nextLine();
+                String ans = "";
 
                 while (!ans.equals("exit")) {
+                    System.out.println("Do you want to edit info or manage courses?");
+
+                    ans = sc.nextLine();
 
                     switch (ans) {
                         case "edit info":
@@ -804,25 +853,22 @@ public class Controller {
     }
 
     private void managerEditStudent(Student searchStudent) {
-        System.out.println(searchStudent);
         Mode curMode = Mode.STUDENT;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(searchStudent);
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(curMode);
+                    alterFaculty(curMode, searchStudent);
                     break;
                 case "degree":
-                    alterDegree();
-                    break;
-                case "position":
-                    alterPosition();
+                    alterDegree(searchStudent);
                     break;
                 case "phone":
                     alterPhone(curMode, searchStudent);
@@ -841,11 +887,11 @@ public class Controller {
     }
 
     private void managerStudentCourses(Student searchStudent) {
-        System.out.println("Do you want to add or delete course?");
-
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("Do you want to add or delete course?");
+
             ans = sc.nextLine();
 
             if (ans.equals("add") || ans.equals("delete")) {
@@ -891,6 +937,10 @@ public class Controller {
 
             }
 
+            else if (ans.equals("exit")) {
+                return;
+            }
+
             else {
                 System.out.println("Invalid option!");
             }
@@ -903,7 +953,7 @@ public class Controller {
 
     }
 
-    private void alterFaculty(Mode mode) {
+    private void alterFaculty(Mode mode, User user) {
         System.out.println("Which faculty you select?");
         Faculty faculty;
 
@@ -941,12 +991,15 @@ public class Controller {
 
         switch (mode) {
             case STUDENT:
+                Student student = (Student) user;
                 student.setFaculty(faculty);
                 break;
             case TEACHER:
+                Teacher teacher = (Teacher) user;
                 teacher.setFaculty(faculty);
                 break;
             case MANAGER:
+                Manager manager = (Manager) user;
                 manager.setFaculty(faculty);
                 break;
         }
@@ -954,7 +1007,7 @@ public class Controller {
         System.out.println("Success!");
     }
 
-    private void alterDegree() {
+    private void alterDegree(Student student) {
         System.out.println("Which degree you select?");
 
         String ans = sc.nextLine().toLowerCase();
@@ -984,7 +1037,7 @@ public class Controller {
         System.out.println("Success!");
     }
 
-    private void alterYearOfStudy() {
+    private void alterYearOfStudy(Student student) {
         System.out.println("Which year do you study?");
 
         String ans = sc.nextLine();
@@ -1006,7 +1059,7 @@ public class Controller {
         }
     }
 
-    private void alterPosition() {
+    private void alterPosition(Teacher teacher) {
         System.out.println("Which position you select?");
 
         String ans = sc.nextLine().toLowerCase();
