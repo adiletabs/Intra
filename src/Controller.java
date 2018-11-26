@@ -43,6 +43,7 @@ public class Controller {
     private static final String MANAGERS = "managers.out";
     private static final String EXECUTORS = "executors.out";
     private static final String NEWS = "news.out";
+    private static final String COURSES = "courses.out";
 
     public static ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     public static ArrayList<Manager> managers = new ArrayList<Manager>();
@@ -131,6 +132,8 @@ public class Controller {
     private void sessionStudent() {
         student = (Student) user;
         mode = Mode.STUDENT;
+
+        curCourses = student.getCourses();
 
         System.out.println("You are logged as student!");
 
@@ -1661,6 +1664,7 @@ public class Controller {
 //  SERIALIZATION
     private void loadData() {
         loadNews();
+        loadCourses();
         loadStudents();
         loadTeachers();
         loadExecutors();
@@ -1685,6 +1689,26 @@ public class Controller {
         }
         catch (IOException e) {
             System.out.println(NEWS + ": " + EXCEPT_IO);
+        }
+    }
+
+    private void loadCourses() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(COURSES));
+
+            courses = (ArrayList<Course>) ois.readObject();
+
+            ois.close();
+
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println(COURSES + ": " + EXCEPT_CLASS);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(COURSES + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(COURSES + ": " + EXCEPT_IO);
         }
     }
 
@@ -1790,6 +1814,7 @@ public class Controller {
 //  DESERIALIZAION
     private static void saveData() {
         saveNews();
+        saveCourses();
         saveManagers();
         saveOrManagers();
         saveTeachers();
@@ -1811,6 +1836,23 @@ public class Controller {
         }
         catch (IOException e) {
             System.out.println(NEWS + ": " + EXCEPT_IO);
+        }
+    }
+
+    private static void saveCourses() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(COURSES));
+
+            oot.writeObject(courses);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(COURSES + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(COURSES + ": " + EXCEPT_IO);
         }
     }
 

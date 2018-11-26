@@ -30,7 +30,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
     public ArrayList<Course> getCourses() {
         ArrayList<Course> curCourses = new ArrayList<>();
 
-        for (String s: courses) {
+        for (String s: this.courses) {
             for (Course c: Controller.courses) {
                 if (c.getId().equals(s)) {
                     curCourses.add(c);
