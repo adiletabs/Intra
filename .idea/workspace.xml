@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b70b5b01-8ab1-4205-a4d7-8c98cc6fa094" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Executor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Executor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/ORManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/ORManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Teacher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Intranet/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Executor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ORManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ORManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-    </list>
+    <list default="true" id="b70b5b01-8ab1-4205-a4d7-8c98cc6fa094" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,8 +135,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="68">
+              <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -230,7 +206,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="195" />
     <option name="y" value="61" />
     <option name="width" value="1140" />
@@ -308,7 +284,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27231467" />
@@ -628,8 +604,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="68">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
