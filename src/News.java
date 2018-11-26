@@ -4,8 +4,8 @@ import java.util.Date;
 public class News extends Message implements Serializable {
     private Faculty faculty;
 
-    public News(String title, String text, String sender, Date date, Faculty faculty) {
-        super(title, text, sender, date);
+    public News(String title, String text, String sender, Faculty faculty) {
+        super(title, text, sender);
         this.faculty = faculty;
     }
 
@@ -14,8 +14,25 @@ public class News extends Message implements Serializable {
 
     @Override
     public String toString() {
-        String info = super.toString();
-        info += "Faculty: " + faculty.toString() + '\n';
+        String info = super.toString(), facultyInfo;
+        try {
+            facultyInfo = "Faculty: " + faculty.toString();
+        }
+        catch (Exception e) {
+            facultyInfo = "";
+        }
+        info += facultyInfo + '\n';
         return info;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof News)) return false;
+        News news = (News) obj;
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

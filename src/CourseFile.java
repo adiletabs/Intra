@@ -17,17 +17,17 @@ public class CourseFile implements Serializable {
 
     @Override
     public String toString() {
-        return title + "\n\n" + text;
+        return "Course file\n" + title + "\n\n" + text + '\n';
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
-
         if (!(obj instanceof CourseFile)) return false;
-
         CourseFile cf = (CourseFile) obj;
-
         return cf.title.equals(title) && cf.text.equals(text) && cf.owner.equals(owner);
     }
+
+    @Override
+    public int hashCode() { return title.hashCode(); }
 }

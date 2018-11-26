@@ -10,12 +10,13 @@ public abstract class User extends Person implements Serializable {
 
     {
         password = defaultPassword;
+        email = "N/A";
+        phone = "N/A";
     }
 
     public User(String lastName, String firstName, String login) {
         super(lastName, firstName);
         this.login = login;
-
     }
 
     public String getLogin() { return login; }
@@ -45,5 +46,6 @@ public abstract class User extends Person implements Serializable {
         return u.login.equals(login);
     }
 
-    // hashcode
+    @Override
+    public int hashCode() { return login.hashCode(); }
 }

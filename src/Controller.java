@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.io.*;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -140,6 +142,8 @@ public class Controller {
         System.out.println("2. Transcript");
         System.out.println("3. News");
         System.out.println("4. Registration");
+        System.out.println("5. Edit Info");
+
 
         String ans = sc.nextLine();
 
@@ -155,6 +159,9 @@ public class Controller {
                 break;
             case "4":
                 studentRegistration();
+                break;
+            case "5":
+                studentInfo();
                 break;
         }
     }
@@ -195,12 +202,49 @@ public class Controller {
 
     }
 
+    private void studentInfo() {
+        System.out.println(student);
+        Mode curMode = Mode.STUDENT;
+
+        System.out.println("What do you want to edit?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "faculty":
+                    alterFaculty(curMode);
+                    break;
+                case "degree":
+                    alterDegree();
+                    break;
+                case "year of study":
+                    alterYearOfStudy();
+                    break;
+                case "phone":
+                    alterPhone(curMode);
+                    break;
+                case "email":
+                    alterEmail(curMode);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode);
+                    break;
+                case "gender":
+                    alterGender(curMode);
+                    break;
+            }
+        }
+    }
+
 //  TEACHER
     private void sessionTeacher() {
         teacher = (Teacher) user;
         mode = Mode.TEACHER;
 
-        curCourses = teacher.getCoursesObj();
+        curCourses = teacher.getCourses();
 
         String ans = "";
 
@@ -213,6 +257,7 @@ public class Controller {
             System.out.println("3. News");
             System.out.println("4. Courses");
             System.out.println("5. Send order");
+            System.out.println("6. Edit Info");
 
             ans = sc.nextLine();
 
@@ -231,6 +276,9 @@ public class Controller {
                     break;
                 case "5":
                     sendOrder();
+                    break;
+                case "6":
+                    teacherInfo();
                     break;
                 case "exit":
                     return;
@@ -308,9 +356,46 @@ public class Controller {
         System.out.println("What`s its text?");
         String text = sc.nextLine();
 
-        Order order = new Order(title, text, teacher.getLogin(), Calendar.getInstance().getTime());
+        Order order = new Order(title, text, teacher.getLogin());
 
         teacher.sendOrder(order);
+    }
+
+    private void teacherInfo() {
+        System.out.println(teacher.getFullName());
+        Mode curMode = Mode.TEACHER;
+
+        System.out.println("What do you want to edit?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "faculty":
+                    alterFaculty(curMode);
+                    break;
+                case "degree":
+                    alterDegree();
+                    break;
+                case "position":
+                    alterPosition();
+                    break;
+                case "phone":
+                    alterPhone(curMode);
+                    break;
+                case "email":
+                    alterEmail(curMode);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode);
+                    break;
+                case "gender":
+                    alterGender(curMode);
+                    break;
+            }
+        }
     }
 
 //  STUDENT + TEACHER (MANAGING COURSE)
@@ -418,13 +503,14 @@ public class Controller {
         System.out.println("Write News` text");
         String text = sc.nextLine();
 
-        News news = new News(title, text, manager.getLogin(), Calendar.getInstance().getTime(), manager.getFaculty());
+        News news = new News(title, text, manager.getLogin(), manager.getFaculty());
 
         manager.addNews(news);
     }
 
     private void managerInfo() {
         System.out.println(manager.getFullName());
+        Mode curMode = Mode.MANAGER;
 
         System.out.println("What do you want to edit?");
 
@@ -435,19 +521,19 @@ public class Controller {
 
             switch (ans) {
                 case "faculty":
-                    alterFaculty(Mode.MANAGER);
+                    alterFaculty(curMode);
                     break;
                 case "phone":
-                    alterPhone(Mode.MANAGER);
+                    alterPhone(curMode);
                     break;
                 case "email":
-                    alterEmail(Mode.MANAGER);
+                    alterEmail(curMode);
                     break;
                 case "birthdate":
-                    alterBdate(Mode.MANAGER);
+                    alterBdate(curMode);
                     break;
                 case "gender":
-                    alterGender(Mode.MANAGER);
+                    alterGender(curMode);
                     break;
             }
         }
@@ -459,6 +545,34 @@ public class Controller {
         mode = Mode.ORMANAGER;
 
 
+    }
+
+    private void orManagerInfo() {
+        System.out.println(manager.getFullName());
+        Mode curMode = Mode.ORMANAGER;
+
+        System.out.println("What do you want to edit?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "phone":
+                    alterPhone(curMode);
+                    break;
+                case "email":
+                    alterEmail(curMode);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode);
+                    break;
+                case "gender":
+                    alterGender(curMode);
+                    break;
+            }
+        }
     }
 
 //  SEARCHING (MANAGER + ORMANAGER)
@@ -502,6 +616,41 @@ public class Controller {
     }
 
     private void alterFaculty(Mode mode) {
+        System.out.println("Which faculty you select?");
+        Faculty faculty;
+
+        String ans = sc.nextLine();
+
+        switch (ans) {
+            case "FIT":
+                faculty = Faculty.FIT;
+                break;
+            case "BS":
+                faculty = Faculty.BS;
+                break;
+            case "CMC":
+                faculty = Faculty.CMC;
+                break;
+            case "ISE":
+                faculty = Faculty.ISE;
+                break;
+            case "KMA":
+                faculty = Faculty.KMA;
+                break;
+            case "FOGI":
+                faculty = Faculty.FOGI;
+                break;
+            case "CED":
+                faculty = Faculty.CED;
+                break;
+            case "FGE":
+                faculty = Faculty.FGE;
+                break;
+            default:
+                System.out.println("Not valid faculty!");
+                return;
+        }
+
         switch (mode) {
             case STUDENT:
                 student.setFaculty(faculty);
@@ -515,8 +664,89 @@ public class Controller {
         }
     }
 
-    private void alterDegree(Degree degree) {
+    private void alterDegree() {
+        System.out.println("Which degree you select?");
+
+        String ans = sc.nextLine().toLowerCase();
+
+        Degree degree;
+
+        switch (ans) {
+            case "foundation":
+                degree = Degree.FOUNDATION;
+                break;
+            case "bachelor":
+                degree = Degree.BACHELOR;
+                break;
+            case "master":
+                degree = Degree.MASTER;
+                break;
+            case "phd":
+                degree = Degree.PHILOSOPHY_DOCTOR;
+                break;
+            default:
+                System.out.println("Not valid degree!");
+                return;
+        }
+
         student.setDegree(degree);
+    }
+
+    private void alterYearOfStudy() {
+        System.out.println("Which year do you study?");
+
+        String ans = sc.nextLine();
+
+        try {
+            int ind = Integer.decode(ans);
+
+            if (ind > -1 && ind < 8) {
+                student.setYearOfStudy(ind);
+            }
+            else {
+                System.out.println("Not valid year of study!");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Not valid year of study!");
+        }
+    }
+
+    private void alterPosition() {
+        System.out.println("Which position you select?");
+
+        String ans = sc.nextLine().toLowerCase();
+
+        TeacherPosition position;
+
+        switch (ans) {
+            case "professor":
+                position = TeacherPosition.PROFESSOR;
+                break;
+            case "associate professor":
+                position = TeacherPosition.ASSOCIATE_PROFESSOR;
+                break;
+            case "assistant professor":
+                position = TeacherPosition.ASSISTANT_PROFESSOR;
+                break;
+            case "senior lecturer":
+                position = TeacherPosition.SENIOR_LECTURER;
+                break;
+            case "lecturer":
+                position = TeacherPosition.LECTURER;
+                break;
+            case "assistant":
+                position = TeacherPosition.ASSISTANT;
+                break;
+            case "tutor":
+                position = TeacherPosition.TUTOR;
+                break;
+            default:
+                System.out.println("Not valid position!");
+                return;
+        }
+
+        teacher.setPosition(position);
     }
 
 //  EXECUTOR
@@ -538,6 +768,7 @@ public class Controller {
             System.out.println("5. Show not done orders");
             System.out.println("6. Show done orders");
             System.out.println("7. Show rejected orders");
+            System.out.println("8. Edit Info");
 
             ans = sc.nextLine();
 
@@ -562,6 +793,9 @@ public class Controller {
                     break;
                 case "7":
                     executorOrders(OrderStatus.REJECTED);
+                    break;
+                case "8":
+                    executorInfo();
                     break;
                 case "exit":
                     return;
@@ -650,6 +884,34 @@ public class Controller {
         System.out.println("Success!");
 
         Executor.saveOrders();
+    }
+
+    private void executorInfo() {
+        System.out.println(manager.getFullName());
+        Mode curMode = Mode.EXECUTOR;
+
+        System.out.println("What do you want to edit?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "phone":
+                    alterPhone(curMode);
+                    break;
+                case "email":
+                    alterEmail(curMode);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode);
+                    break;
+                case "gender":
+                    alterGender(curMode);
+                    break;
+            }
+        }
     }
 
 //  ADMIN
@@ -828,19 +1090,128 @@ public class Controller {
     }
 
     private void alterPhone(Mode mode) {
+        System.out.println("Enter you phone number");
 
+        String ans = sc.nextLine();
+
+        switch (mode) {
+            case STUDENT:
+                student.setPhone(ans);
+                break;
+            case TEACHER:
+                teacher.setPhone(ans);
+                break;
+            case MANAGER:
+                manager.setPhone(ans);
+                break;
+            case ORMANAGER:
+                orManager.setPhone(ans);
+                break;
+            case EXECUTOR:
+                executor.setPhone(ans);
+                break;
+        }
     }
 
     private void alterEmail(Mode mode) {
+        System.out.println("Enter you email");
 
+        String ans = sc.nextLine();
+
+        switch (mode) {
+            case STUDENT:
+                student.setEmail(ans);
+                break;
+            case TEACHER:
+                teacher.setEmail(ans);
+                break;
+            case MANAGER:
+                manager.setEmail(ans);
+                break;
+            case ORMANAGER:
+                orManager.setEmail(ans);
+                break;
+            case EXECUTOR:
+                executor.setEmail(ans);
+                break;
+        }
     }
 
     private void alterBdate(Mode mode) {
+        System.out.println("Enter birthdate`s day");
+        String ans_day = sc.nextLine();
 
+        System.out.println("Enter birthdate`s month");
+        String ans_month = sc.nextLine();
+
+        System.out.println("Enter birthdate`s year");
+        String ans_year = sc.nextLine();
+
+        try{
+            int year = Integer.decode(ans_year);
+            int month = Integer.decode(ans_month);
+            int day = Integer.decode(ans_month);
+
+            Date date = new Date(year, month, day);
+
+            switch (mode) {
+                case STUDENT:
+                    student.setBirthDate(date);
+                    break;
+                case TEACHER:
+                    teacher.setBirthDate(date);
+                    break;
+                case EXECUTOR:
+                    executor.setBirthDate(date);
+                    break;
+                case MANAGER:
+                    manager.setBirthDate(date);
+                    break;
+                case ORMANAGER:
+                    orManager.setBirthDate(date);
+                    break;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Invalid date!");
+        }
     }
 
     private void alterGender(Mode mode) {
-        
+        System.out.println("Enter you phone number");
+        Gender gender;
+
+        String ans = sc.nextLine();
+
+        switch (ans) {
+            case "male":
+                gender = Gender.MALE;
+                break;
+            case "female":
+                gender = Gender.FEMALE;
+                break;
+            default:
+                System.out.println("Not valid gender!");
+                return;
+        }
+
+        switch (mode) {
+            case STUDENT:
+                student.setGender(gender);
+                break;
+            case TEACHER:
+                teacher.setGender(gender);
+                break;
+            case MANAGER:
+                manager.setGender(gender);
+                break;
+            case ORMANAGER:
+                orManager.setGender(gender);
+                break;
+            case EXECUTOR:
+                executor.setGender(gender);
+                break;
+        }
     }
 
 //  EMPLOYEE
@@ -925,7 +1296,7 @@ public class Controller {
         System.out.println("Write message`s text");
         String text = sc.nextLine();
 
-        Message message = new Message(title, text, employee.getLogin(), Calendar.getInstance().getTime());
+        Message message = new Message(title, text, employee.getLogin());
 
         if (employee.sendMessage(message, login)) {
             System.out.println("Message sent!");

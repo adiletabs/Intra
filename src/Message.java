@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -8,7 +9,8 @@ public class Message implements Serializable {
     private String sender;
     private Date date;
 
-    public Message(String title, String text, String sender, Date date) {
+    public Message(String title, String text, String sender) {
+        date = Calendar.getInstance().getTime();
         this.title = title;
         this.text = text;
         this.sender = sender;
@@ -44,4 +46,7 @@ public class Message implements Serializable {
         return msg.title.equals(title) && msg.text.equals(text) &&
                 msg.sender.equals(sender) && msg.date.equals(date);
     }
+
+    @Override
+    public int hashCode() { return title.hashCode(); }
 }

@@ -10,6 +10,11 @@ public class Admin implements Serializable {
     private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
     private static final String FILE = "admin.txt";
 
+    {
+        login = "";
+        password = "";
+    }
+
     public Admin() {
         getData();
     }
@@ -158,4 +163,18 @@ public class Admin implements Serializable {
             System.out.println("Cannot read from " + FILE);
         }
     }
+
+    @Override
+    public String toString() { return "Admin login: " + login + '\n'; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Admin)) return false;
+        Admin a = (Admin) obj;
+        return !login.equals("") && a.login.equals(login);
+    }
+
+    @Override
+    public int hashCode() { return login.hashCode(); }
 }

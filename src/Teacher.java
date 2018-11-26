@@ -2,9 +2,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Teacher extends Employee implements ManagingCourses, Serializable {
-    private ArrayList<String> courses;
     private TeacherPosition position;
     private Faculty faculty;
+    private ArrayList<String> courses;
 
     public Teacher (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
@@ -18,18 +18,17 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
 
     public void sendOrder(Order order) {
         Executor.orders.add(order);
-
         Executor.saveOrders();
     }
 
     @Override
-    public ArrayList<Course> getCoursesObj() {
+    public ArrayList<Course> getCourses() {
         ArrayList<Course> curCourses = new ArrayList<>();
-
-        for (Course c: Controller.courses) {
-            for (String s: courses) {
-                if (c.getCourseName().equals(s) && (c.getTeacherLogins().contains(getLogin()))) {
+        for (String s: courses) {
+            for (Course c: Controller.courses) {
+                if (c.getId().equals(s)) {
                     curCourses.add(c);
+                    break;
                 }
             }
         }
@@ -37,52 +36,34 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
     }
 
     @Override
-    public ArrayList<String> getCourses() { return courses; }
+    public void addCourses(String courseId) { courses.add(courseId); }
 
     @Override
-    public Course getCourse(String courseName) {
-        Course course = null;
-
-        for (Course c: Controller.courses) {
-            if (c.getCourseName().equals(courseName) && c.getTeacherLogins().contains(getLogin())) {
-                course = c;
-
-                break;
-            }
-        }
-        return course;
-    }
-
-    @Override
-    public void addCourses(Course course) {
-        courses.add(course.getCourseName());
-    }
-
-    @Override
-    public void deleteCourse(Course course) {
-        courses.remove(course.getCourseName());
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Teacher) {
-            Teacher other = (Teacher) obj;
-
-            if (!courses.equals(other.getCourses())) return false;
-
-            else if (!position.equals(other.getPosition())) return false;
-
-            else if (!faculty.equals(other.faculty)) return false;
-
-            else return super.equals(other);
-        }
-        else {
-            return false;
-        }
+    public void deleteCourse(String courseId) {
+        courses.remove(courseId);
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        String facultyInfo, posInfo;
+        try {
+            facultyInfo = "Faculty: " + faculty.toString() + '\n';
+        }
+        catch (Exception e) {
+            facultyInfo = "";
+        }
+        try {
+            posInfo = "Position: " + position.toString() +'\n';
+        }
+        catch (Exception e) {
+            posInfo = "";
+        }
+        return "Teacher\n" + super.toString() + facultyInfo + posInfo;
     }
+
+    @Override
+    public boolean equals(Object obj) { return super.equals(obj); }
+
+    @Override
+    public int hashCode() { return super.hashCode(); }
 }

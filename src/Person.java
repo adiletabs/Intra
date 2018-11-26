@@ -2,11 +2,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 public abstract class Person implements Serializable {
-    private String firstName, lastName;
+    private String firstName;
+    private String lastName;
     private Gender gender;
     private Date birthDate;
 
     {
+        firstName = "";
+        lastName = "";
         gender = null;
         birthDate = null;
     }
@@ -42,9 +45,20 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
+        String genderInfo, birthInfo;
+        try {
+            genderInfo = "Gender: " + gender.toString() + '\n';
+        }
+        catch (Exception e) {
+            genderInfo = "";
+        }
+        try {
+            birthInfo = "BirthDate: " + this.getBirthDate().toString() + '\n';
+        }
+        catch (Exception e) {
+            birthInfo = "";
+        }
         String nameInfo = "Name: " + this.getFullName() + '\n';
-        String genderInfo = "Gender: " + this.getGender().toString() + '\n';
-        String birthInfo = "BirthDate: " + this.getBirthDate().toString() + '\n';
         return nameInfo + genderInfo + birthInfo;
     }
 
@@ -53,9 +67,14 @@ public abstract class Person implements Serializable {
         if (obj == this) return true;
         if (!(obj instanceof Person)) return false;
         Person p = (Person) obj;
-        return p.firstName.equals(firstName) && p.lastName.equals(lastName) &&
-                p.gender.equals(gender) && p.birthDate.equals(birthDate);
+        return (!firstName.equals("") && p.firstName.equals(firstName)) &&
+                (!lastName.equals("") && p.lastName.equals(lastName)) &&
+                (gender != null && p.gender.equals(gender)) &&
+                (birthDate != null && p.birthDate.equals(birthDate));
     }
 
-    // hashCode
+    @Override
+    public int hashCode() {
+        return lastName.hashCode();
+    }
 }
