@@ -18,6 +18,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
 
     public void sendOrder(Order order) {
         Executor.orders.add(order);
+
         Executor.saveOrders();
     }
 
@@ -31,9 +32,7 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
                     curCourses.add(c);
                 }
             }
-
         }
-
         return curCourses;
     }
 

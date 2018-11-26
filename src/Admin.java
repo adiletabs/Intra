@@ -7,8 +7,8 @@ public class Admin implements Serializable {
     private String login;
     private String password;
 
-    private final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
-    private final String FILE = "admin.txt";
+    private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
+    private static final String FILE = "admin.txt";
 
     public Admin() {
         getData();

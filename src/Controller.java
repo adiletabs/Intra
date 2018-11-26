@@ -125,12 +125,11 @@ public class Controller {
             System.out.println("Invalid login or password!");
         }
 
-
     }
 
 //  STUDENT
     private void sessionStudent() {
-        Student student = (Student) user;
+        student = (Student) user;
         mode = Mode.STUDENT;
 
         System.out.println("You are logged as student!");
@@ -138,16 +137,61 @@ public class Controller {
         System.out.println("Choose the option you want");
         System.out.println("1. Courses");
         System.out.println("2. Transcript");
-        System.out.println("3. Schedule");
-        System.out.println("4. News");
-        System.out.println("5. Registration");
+        System.out.println("3. News");
+        System.out.println("4. Registration");
 
         String ans = sc.nextLine();
 
         switch (ans) {
             case "1":
-                student.getCourses();
+                showCourses(Mode.STUDENT);
+                break;
+            case "2":
+                studentTranscript();
+                break;
+            case "3":
+                showNews();
+                break;
+            case "4":
+                studentRegistration();
+                break;
         }
+    }
+
+    private void studentCourse(int ind) {
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Show Marks");
+            System.out.println("2. Show Course Files");
+            System.out.println("3. Show Course Info");
+            System.out.println("4. Show Teachers` Info");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
+    }
+
+    private void studentTranscript() {
+
+    }
+
+    private void studentRegistration() {
+
     }
 
 //  TEACHER
@@ -167,8 +211,7 @@ public class Controller {
             System.out.println("2. Show Messages");
             System.out.println("3. News");
             System.out.println("4. Courses");
-            System.out.println("5. Schedule");
-            System.out.println("6. Send order");
+            System.out.println("5. Send order");
 
             ans = sc.nextLine();
 
@@ -183,12 +226,9 @@ public class Controller {
                     showNews();
                     break;
                 case "4":
-                    teacherCourses();
+                    showCourses(Mode.TEACHER);
                     break;
                 case "5":
-                    showSchedule();
-                    break;
-                case "6":
                     sendOrder();
                     break;
                 case "exit":
@@ -198,40 +238,6 @@ public class Controller {
                     break;
             }
         }
-
-    }
-
-    private void teacherCourses() {
-        String ans = "";
-
-        while (!ans.equals("exit")) {
-            System.out.println("Your courses:");
-
-            for (int i = 0; i < curCourses.size(); ++i) {
-                System.out.println((i + 1) + ". " + curCourses.get(i).getCourseName());
-            }
-
-            System.out.println("Select course you want");
-
-            ans = sc.nextLine();
-
-            try {
-                int ind = Integer.decode(ans);
-
-                ind--;
-
-                if (ind > -1 && ind < curCourses.size()) {
-                    teacherCourse(ind);
-                }
-                else {
-                    System.out.println("Wrong selection");
-                }
-            }
-            catch (Exception e) {
-                System.out.println("Wrong selection");
-            }
-        }
-
     }
 
     private void teacherCourse(int ind) {
@@ -251,7 +257,7 @@ public class Controller {
                     teacherAddFile(ind);
                     break;
                 case "2":
-                    showSchedule();
+                    teacherDeleteFile(ind);
                     break;
                 case "3":
                     showNews();
@@ -279,53 +285,17 @@ public class Controller {
 
         curCourses.get(ind).addFile(courseFile);
 
+        System.out.println("Success!");
     }
 
-    private void showSchedule() {
+    private void teacherDeleteFile(int ind) {
+        System.out.println("What`s the title of file you want to delete?");
 
-    }
+        String title = sc.nextLine();
 
-    private void showNews() {
-        int limit = 7;
-        String ans = "";
+        curCourses.get(ind).deleteFile(title);
 
-        for (int i = 0; i < news.size(); ++i) {
-            System.out.println((i + 1) + ". " + news.get(news.size() - i - 1).getTitle());
-
-            if (i == limit) break;
-        }
-
-        System.out.println("Select the news you want");
-
-        while (!ans.equals("exit")) {
-            ans = sc.nextLine();
-
-            try {
-                int ind = Integer.decode(ans);
-
-                ind--;
-
-                if (ind > -1 && ind < limit + 1) {
-                    showNews(ind);
-                }
-                else {
-                    System.out.println("Wrong selection");
-                }
-            }
-            catch (Exception e) {
-                if (ans.equals("exit")) {
-                    break;
-                }
-
-                System.out.println("Wrong selection");
-            }
-        }
-
-
-    }
-
-    private void showNews(int ind) {
-        System.out.println(news.get(news.size() - ind - 1));
+        System.out.println("Success!");
     }
 
     private void sendOrder() {
@@ -342,7 +312,47 @@ public class Controller {
         teacher.sendOrder(order);
     }
 
-// MANAGER
+//  STUDENT + TEACHER (MANAGING COURSE)
+    private void showCourses(Mode mode) {
+    String ans = "";
+
+    while (!ans.equals("exit")) {
+        System.out.println("Your courses:");
+
+        for (int i = 0; i < curCourses.size(); ++i) {
+            System.out.println((i + 1) + ". " + curCourses.get(i).getCourseName());
+        }
+
+        System.out.println("Select course you want");
+
+        ans = sc.nextLine();
+
+        try {
+            int ind = Integer.decode(ans);
+
+            ind--;
+
+            if (ind > -1 && ind < curCourses.size()) {
+                switch (mode) {
+                    case TEACHER:
+                        teacherCourse(ind);
+                        break;
+                    case STUDENT:
+                        studentCourse(ind);
+                        break;
+                }
+            }
+            else {
+                System.out.println("Wrong selection");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Wrong selection");
+        }
+    }
+}
+
+//  MANAGER
     private void sessionManager() {
         manager = (Manager) user;
         mode = Mode.MANAGER;
@@ -370,37 +380,37 @@ public class Controller {
         while (!ans.equals("exit")) {
 
             System.out.println("Choose the option you want");
-            System.out.println("1. News");
-            System.out.println("2. Show new orders");
-            System.out.println("3. Show not done orders");
-            System.out.println("4. Show done orders");
-            System.out.println("5. Show rejected orders");
-            System.out.println("6. Show messages");
-            System.out.println("7. Write messages");
+            System.out.println("1. Send Messages");
+            System.out.println("2. Show Messages");
+            System.out.println("3. News");
+            System.out.println("4. Show new orders");
+            System.out.println("5. Show not done orders");
+            System.out.println("6. Show done orders");
+            System.out.println("7. Show rejected orders");
 
             ans = sc.nextLine();
 
             switch (ans) {
                 case "1":
-                    showNews();
+                    writeMessage();
                     break;
                 case "2":
-                    executorOrders(OrderStatus.NEW);
-                    break;
-                case "3":
-                    executorOrders(OrderStatus.NOT_DONE);
-                    break;
-                case "4":
-                    executorOrders(OrderStatus.DONE);
-                    break;
-                case "5":
-                    executorOrders(OrderStatus.REJECTED);
-                    break;
-                case "6":
                     showMessages();
                     break;
+                case "3":
+                    showNews();
+                    break;
+                case "4":
+                    executorOrders(OrderStatus.NEW);
+                    break;
+                case "5":
+                    executorOrders(OrderStatus.NOT_DONE);
+                    break;
+                case "6":
+                    executorOrders(OrderStatus.DONE);
+                    break;
                 case "7":
-                    writeMessage();
+                    executorOrders(OrderStatus.REJECTED);
                     break;
                 case "exit":
                     return;
@@ -412,17 +422,17 @@ public class Controller {
     }
 
     private void executorOrders(OrderStatus status) {
-        ArrayList<Order> orders = executor.getOrders(status);
-
-        for (int i = 0; i < orders.size(); ++i) {
-            System.out.println((i + 1) + ". " + orders.get(i).getTitle());
-        }
-
         String ans = "";
 
-        System.out.println("Select one order!");
-
         while (!ans.equals("exit")) {
+            ArrayList<Order> orders = executor.getOrders(status);
+
+            System.out.println("Select one order!");
+
+            for (int i = 0; i < orders.size(); ++i) {
+                System.out.println((i + 1) + ". " + orders.get(i).getTitle());
+            }
+
             ans = sc.nextLine();
 
             try {
@@ -485,6 +495,8 @@ public class Controller {
                     break;
             }
         }
+
+        System.out.println("Success!");
 
         Executor.saveOrders();
     }
@@ -613,9 +625,53 @@ public class Controller {
         }
     }
 
+//  GENERAL
+    private void showNews() {
+        int limit = 7;
+        String ans = "";
+
+        for (int i = 0; i < news.size(); ++i) {
+            System.out.println((i + 1) + ". " + news.get(news.size() - i - 1).getTitle());
+
+            if (i == limit) break;
+        }
+
+        System.out.println("Select the news you want");
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < limit + 1) {
+                    showNews(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                if (ans.equals("exit")) {
+                    break;
+                }
+
+                System.out.println("Wrong selection");
+            }
+        }
+
+
+    }
+
+    private void showNews(int ind) {
+        System.out.println(news.get(news.size() - ind - 1));
+    }
+
 //  EMPLOYEE
     private void showMessages() {
-        Employee employee = null;
+        Employee employee;
 
         switch (mode) {
             case TEACHER:
@@ -634,13 +690,17 @@ public class Controller {
                 return;
         }
 
-        System.out.println(employee.getMessages());
-
-        System.out.println("Which message you want to show?");
+        ArrayList<String> messages = employee.getMessages();
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println("Which message you want to show?");
+
+            for (int i = 0; i< messages.size(); ++i) {
+                System.out.println((i+1) + ". " + messages.get(i));
+            }
+
             ans = sc.nextLine();
 
             try {
@@ -648,8 +708,8 @@ public class Controller {
 
                 ind--;
 
-                if (ind > -1 && ind < curCourses.size()) {
-                    employee.readMessage(ind);
+                if (ind > -1 && ind < messages.size()) {
+                    System.out.println(employee.readMessage(ind));
                 }
                 else {
                     System.out.println("Wrong selection");
@@ -720,12 +780,12 @@ public class Controller {
 
 //  SERIALIZATION
     private void loadData() {
-    loadStudents();
-    loadTeachers();
-    loadExecutors();
-    loadManagers();
-    loadOrManagers();
-}
+        loadStudents();
+        loadTeachers();
+        loadExecutors();
+        loadManagers();
+        loadOrManagers();
+    }
 
     private void loadStudents() {
         try {
