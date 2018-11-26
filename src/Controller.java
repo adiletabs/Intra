@@ -371,6 +371,7 @@ public class Controller {
             System.out.println("5. Find Student");
             System.out.println("6. Find Course");
             System.out.println("7. Add News");
+            System.out.println("8. Edit Info");
 
             ans = sc.nextLine();
 
@@ -396,6 +397,9 @@ public class Controller {
                 case "7":
                     managerWriteNews();
                     break;
+                case "8":
+                    managerInfo();
+                    break;
                 case "exit":
                     return;
                 default:
@@ -417,6 +421,36 @@ public class Controller {
         News news = new News(title, text, manager.getLogin(), Calendar.getInstance().getTime(), manager.getFaculty());
 
         manager.addNews(news);
+    }
+
+    private void managerInfo() {
+        System.out.println(manager.getFullName());
+
+        System.out.println("What do you want to edit?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "faculty":
+                    alterFaculty(Mode.MANAGER);
+                    break;
+                case "phone":
+                    alterPhone(Mode.MANAGER);
+                    break;
+                case "email":
+                    alterEmail(Mode.MANAGER);
+                    break;
+                case "birthdate":
+                    alterBdate(Mode.MANAGER);
+                    break;
+                case "gender":
+                    alterGender(Mode.MANAGER);
+                    break;
+            }
+        }
     }
 
 //  ORMANAGER
@@ -465,6 +499,24 @@ public class Controller {
 
     private void managerFindCourse(Mode mode) {
 
+    }
+
+    private void alterFaculty(Mode mode) {
+        switch (mode) {
+            case STUDENT:
+                student.setFaculty(faculty);
+                break;
+            case TEACHER:
+                teacher.setFaculty(faculty);
+                break;
+            case MANAGER:
+                manager.setFaculty(faculty);
+                break;
+        }
+    }
+
+    private void alterDegree(Degree degree) {
+        student.setDegree(degree);
     }
 
 //  EXECUTOR
@@ -729,21 +781,23 @@ public class Controller {
         int limit = 7;
         String ans = "";
 
-        for (int i = 0; i < news.size(); ++i) {
-            System.out.println((i + 1) + ". " + news.get(news.size() - i - 1).getTitle());
-
-            if (i == limit) break;
-        }
-
-        System.out.println("Select the news you want");
-
         while (!ans.equals("exit")) {
+            System.out.println("Select the news you want");
+
+            for (int i = 0; i < news.size(); ++i) {
+                System.out.println((i + 1) + ". " + news.get(news.size() - i - 1).getTitle());
+
+                if (i == limit) break;
+            }
+
             ans = sc.nextLine();
 
             try {
                 int ind = Integer.decode(ans);
 
                 ind--;
+
+                System.out.println(ind);
 
                 if (ind > -1 && ind < limit + 1) {
                     showNews(ind);
@@ -765,7 +819,28 @@ public class Controller {
     }
 
     private void showNews(int ind) {
-        System.out.println(news.get(news.size() - ind - 1));
+        News thisNews = news.get(news.size() - ind - 1);
+
+        System.out.println(thisNews.getTitle());
+        System.out.println(thisNews.getText());
+
+        System.out.println(thisNews.getFaculty());
+    }
+
+    private void alterPhone(Mode mode) {
+
+    }
+
+    private void alterEmail(Mode mode) {
+
+    }
+
+    private void alterBdate(Mode mode) {
+
+    }
+
+    private void alterGender(Mode mode) {
+        
     }
 
 //  EMPLOYEE

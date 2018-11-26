@@ -24,6 +24,12 @@ public class Student extends User implements ManagingCourses, Serializable {
 
     public void incrementYearOfStudy() { yearOfStudy++; }
 
+    public Faculty getFaculty() { return faculty; }
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
+
+    public Degree getDegree() { return degree; }
+    public void setDegree(Degree degree) { this.degree = degree; }
+
     @Override
     public ArrayList<String> getCourses() {
         return null;
