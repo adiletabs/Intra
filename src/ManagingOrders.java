@@ -6,5 +6,5 @@ public interface ManagingOrders {
 
     Order getOrder(String title, String sender, Date date);
 
-    void changeOrderStatus(String title, String sender, Date date, OrderStatus status);
+    void changeOrderStatus(Order order, OrderStatus status);
 }

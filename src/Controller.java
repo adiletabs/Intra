@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -357,7 +358,65 @@ public class Controller {
         manager = (Manager) user;
         mode = Mode.MANAGER;
 
+        String ans = "";
 
+        System.out.println("You are logged as teacher!");
+
+        while (!ans.equals("exit")) {
+            System.out.println("Choose the option you want");
+            System.out.println("1. Send Message");
+            System.out.println("2. Show Messages");
+            System.out.println("3. News");
+            System.out.println("4. Find Teacher");
+            System.out.println("5. Find Student");
+            System.out.println("6. Find Course");
+            System.out.println("7. Add News");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "1":
+                    writeMessage();
+                    break;
+                case "2":
+                    showMessages();
+                    break;
+                case "3":
+                    showNews();
+                    break;
+                case "4":
+                    managerFindTeacher(Mode.TEACHER);
+                    break;
+                case "5":
+                    managerFindStudent(Mode.TEACHER);
+                    break;
+                case "6":
+                    managerFindCourse(Mode.TEACHER);
+                    break;
+                case "7":
+                    managerWriteNews();
+                    break;
+                case "exit":
+                    return;
+                default:
+                    System.out.println("Not valid option!");
+                    break;
+            }
+        }
+
+
+    }
+
+    private void managerWriteNews() {
+        System.out.println("Write News` title");
+        String title = sc.nextLine();
+
+        System.out.println("Write News` text");
+        String text = sc.nextLine();
+
+        News news = new News(title, text, manager.getLogin(), Calendar.getInstance().getTime(), manager.getFaculty());
+
+        manager.addNews(news);
     }
 
 //  ORMANAGER
@@ -365,6 +424,46 @@ public class Controller {
         orManager = (ORManager) user;
         mode = Mode.ORMANAGER;
 
+
+    }
+
+//  SEARCHING (MANAGER + ORMANAGER)
+    private void managerFindTeacher(Mode mode) {
+        System.out.println("Enter teacher`s login");
+        String login = sc.nextLine();
+
+        Teacher searchTeacher = null;
+
+        for (Teacher t: teachers) {
+            if (t.getLogin().equals(login)) {
+                searchTeacher = t;
+
+                break;
+            }
+        }
+
+        if (searchTeacher == null) {
+            System.out.println("Teacher not found!");
+        }
+        else {
+            System.out.println(searchTeacher);
+
+            System.out.println("Do you want to edit info?");
+
+            String ans = sc.nextLine();
+
+//            switch (ans) {
+//                case "yes":
+//                    managerEditTeacher();
+//            }
+        }
+    }
+
+    private void managerFindStudent(Mode mode) {
+
+    }
+
+    private void managerFindCourse(Mode mode) {
 
     }
 
@@ -469,10 +568,10 @@ public class Controller {
 
             switch (ans) {
                 case "accept":
-                    order.setStatus(OrderStatus.NOT_DONE);
+                    executor.changeOrderStatus(order, OrderStatus.NOT_DONE);
                     break;
                 case "reject":
-                    order.setStatus(OrderStatus.REJECTED);
+                    executor.changeOrderStatus(order, OrderStatus.REJECTED);
                     break;
                 default:
                     System.out.println("Not valid operation!");
@@ -487,7 +586,7 @@ public class Controller {
 
             switch (ans) {
                 case "yes":
-                    order.setStatus(OrderStatus.DONE);
+                    executor.changeOrderStatus(order, OrderStatus.DONE);
                 case "no":
                     break;
                 default:

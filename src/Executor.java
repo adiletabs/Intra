@@ -50,16 +50,10 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
     }
 
     @Override
-    public void changeOrderStatus(String title, String sender, Date date, OrderStatus status) {
-        for (Order o: orders) {
-            if (o.getTitle().equals(title) && o.getSender().equals(sender) && o.getDate().equals(date)) {
-                o.setStatus(status);
+    public void changeOrderStatus(Order order, OrderStatus status) {
+        order.setStatus(status);
 
-                reply(title, sender, status);
-
-                break;
-            }
-        }
+        reply(order.getTitle(), order.getSender(), status);
     }
 
     private void reply(String title, String sender, OrderStatus status) {
