@@ -1,7 +1,15 @@
-public abstract class User extends Person {
-    private String login, password, email, phone;
+import java.io.Serializable;
+
+public abstract class User extends Person implements Serializable {
+    private String login;
+    private String password;
+    private String email;
+    private String phone;
+
+    public static String defaultPassword = "Kbtu111";
 
     {
+        password = defaultPassword;
         email = "";
         phone = "";
     }
@@ -16,11 +24,9 @@ public abstract class User extends Person {
     public void setPassword(String password) { this.password = password; }
 
     public String getEmail() { return email; }
-
     public void setEmail(String email) { this.email = email; }
 
     public String getPhone() { return phone; }
-
     public void setPhone(String phone) { this.phone = phone; }
 
     @Override
@@ -39,5 +45,5 @@ public abstract class User extends Person {
         return u.login.equals(login);
     }
 
-    // hashcode
+    public int hashCode() { return login.hashCode(); }
 }

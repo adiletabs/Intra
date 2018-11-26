@@ -6,7 +6,8 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        Date g = null;
-        System.out.println(g);
+        String a = "abc";
+        int b = 5;
+        System.out.println(a + b + b);
     }
 }

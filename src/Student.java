@@ -8,22 +8,40 @@ public class Student extends User {
     private double gpa;
     private ArrayList<String> courses;
 
+    private static int commonID = 0;
+
     {
         yearOfStudy = 1;
         courses = new ArrayList<String>();
     }
 
-    public Student(String lastName, String firstName, String login,
-                   String id, Degree degree, Faculty faculty, int yearOfStudy) {
+    private String registerID() {
+        String res = "";
+        commonID++;
+        if (commonID < 10)
+            res = "00000" + commonID;
+        else if (commonID < 100)
+            res = "0000" + commonID;
+        else if (commonID < 1000)
+            res = "000" + commonID;
+        else if (commonID < 10000)
+            res = "00" + commonID;
+        else if (commonID < 100000)
+            res = "0" + commonID;
+        else
+            res = Integer.toString(commonID);
+        return res;
+    }
+
+    public Student(String lastName, String firstName, String login) {
         super(lastName, firstName, login);
-        this.id = id;
-        this.degree = degree;
-        this.yearOfStudy = yearOfStudy;
+        id = registerID();
     }
 
     public String getId() { return id; }
 
     public int getYearOfStudy() { return yearOfStudy; }
+    public void setYearOfStudy(int yearOfStudy) { this.yearOfStudy = yearOfStudy; }
 
     public void incrementYearOfStudy() { yearOfStudy++; }
 
