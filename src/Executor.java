@@ -7,8 +7,8 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
     public static ArrayList<Order> orders;
 
     static {
-        loadOrders();
         orders = new ArrayList<>();
+        loadOrders();
     }
 
     private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";

@@ -1,4 +1,3 @@
-import javax.swing.plaf.ComponentInputMapUIResource;
 import java.io.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -362,6 +361,8 @@ public class Controller {
         Order order = new Order(title, text, teacher.getLogin());
 
         teacher.sendOrder(order);
+
+        System.out.println("Success!");
     }
 
     private void teacherInfo() {
@@ -556,7 +557,8 @@ public class Controller {
             System.out.println("4. Find Teacher");
             System.out.println("5. Find Student");
             System.out.println("6. Find Course");
-            System.out.println("7. Edit Info");
+            System.out.println("7. Create Course");
+            System.out.println("8. Edit Info");
 
             ans = sc.nextLine();
 
@@ -580,6 +582,9 @@ public class Controller {
                     managerFindCourse(Mode.ORMANAGER);
                     break;
                 case "7":
+                    managerCreateCourse();
+                    break;
+                case "8":
                     orManagerInfo();
                     break;
                 case "exit":
@@ -620,6 +625,43 @@ public class Controller {
     }
 
 //  SEARCHING (MANAGER + ORMANAGER)
+    private void managerCreateCourse() {
+        System.out.println("Enter the name of course");
+        String courseName = sc.nextLine();
+
+        System.out.println("Enter the id of course");
+        String id = sc.nextLine();
+
+        System.out.println("Enter the number of credits of course");
+        String credtiNumStr = sc.nextLine();
+
+        try {
+            int creditNum = Integer.decode(credtiNumStr);
+
+            if (creditNum > 0 && creditNum < 5) {
+                Course course = new Course(id, courseName, creditNum);
+
+                if (courses.contains(course)) {
+                    System.out.println("Course is already here");
+                }
+                else {
+                    courses.add(course);
+
+                    System.out.println("Success!");
+                }
+
+            }
+            else {
+                System.out.println("Not valid data!");
+            }
+
+        }
+        catch (Exception e) {
+            System.out.println("Not valid data!");
+        }
+
+    }
+
     private void managerFindTeacher(Mode mode) {
         System.out.println("Enter teacher`s login");
         String login = sc.nextLine();
@@ -1236,12 +1278,12 @@ public class Controller {
     }
 
     private void executorInfo() {
-        System.out.println(executor);
         Mode curMode = Mode.EXECUTOR;
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+            System.out.println(executor);
             System.out.println("What do you want to edit?");
 
             ans = sc.nextLine();
