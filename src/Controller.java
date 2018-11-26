@@ -134,6 +134,7 @@ public class Controller {
 
     private void sessionStudent() {
         Student student = (Student) user;
+        mode = Mode.STUDENT;
 
         System.out.println("You are logged as student!");
 
@@ -154,6 +155,7 @@ public class Controller {
 
     private void sessionTeacher() {
         teacher = (Teacher) user;
+        mode = Mode.TEACHER;
 
         curCourses = teacher.getCoursesObj();
 
@@ -335,15 +337,22 @@ public class Controller {
     }
 
     private void sessionManager() {
+        manager = (Manager) user;
+        mode = Mode.MANAGER;
+
 
     }
 
     private void sessionORManager() {
+        orManager = (ORManager) user;
+        mode = Mode.ORMANAGER;
+
 
     }
 
     private void sessionExecutor() {
         executor = (Executor) user;
+        mode = Mode.EXECUTOR;
 
         String ans = "";
 
@@ -468,6 +477,23 @@ public class Controller {
     }
 
     private void showMessages() {
+        Employee employee;
+
+        switch (mode) {
+            case TEACHER:
+                employee = teacher;
+                break;
+            case MANAGER:
+                employee = manager;
+                break;
+            case ORMANAGER:
+                employee = orManager;
+                break;
+            case EXECUTOR:
+                employee = executor;
+                break;
+        }
+
 
     }
 

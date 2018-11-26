@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public interface Messaging {
     void sendMessage(Message message, String login);
 
-    String getMessages();
+    ArrayList<String> getMessages();
 
-    String readMessage(String title);
+    String readMessage(int ind);
 }

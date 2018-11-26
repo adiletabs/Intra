@@ -41,27 +41,18 @@ public abstract class Employee extends User implements Messaging, Serializable {
     }
 
     @Override
-    public String getMessages() {
-        String res = "";
+    public ArrayList<String> getMessages() {
+        ArrayList<String> messagesText =  new ArrayList<>();
 
         for (Message msg: messages) {
-            res += msg.getTitle() + "\nSender: " + msg.getSender() + "\n\n";
+            messagesText.add(msg.getTitle() + "\nSender: " + msg.getSender() + "\n\n");
         }
 
-        return messages.isEmpty() ? "No messages found" : res;
+        return messagesText;
     }
 
     @Override
-    public String readMessage(String title) {
-        String res = "Error. There is no message with such title\n";
-
-        for (Message msg: messages) {
-            if (msg.getTitle().equals(title)) {
-                res = msg.toString() + '\n';
-                break;
-            }
-        }
-
-        return res;
+    public String readMessage(int ind) {
+        return messages.get(ind).toString();
     }
 }
