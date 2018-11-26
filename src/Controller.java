@@ -222,16 +222,16 @@ public class Controller {
                     alterYearOfStudy();
                     break;
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, student);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, student);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, student);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, student);
                     break;
             }
         }
@@ -381,16 +381,16 @@ public class Controller {
                     alterPosition();
                     break;
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, teacher);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, teacher);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, teacher);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, teacher);
                     break;
             }
         }
@@ -522,16 +522,16 @@ public class Controller {
                     alterFaculty(curMode);
                     break;
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, manager);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, manager);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, manager);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, manager);
                     break;
             }
         }
@@ -558,16 +558,16 @@ public class Controller {
 
             switch (ans) {
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, orManager);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, orManager);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, orManager);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, orManager);
                     break;
             }
         }
@@ -595,11 +595,12 @@ public class Controller {
             System.out.println(searchTeacher);
 
             if (mode == Mode.MANAGER) {
-                System.out.println("Do you want to edit info?");
-
-                String ans = sc.nextLine();
+                String ans = "";
 
                 while (!ans.equals("exit")) {
+                    System.out.println("Do you want to edit info?");
+
+                    ans = sc.nextLine();
 
                     switch (ans) {
                         case "yes":
@@ -634,10 +635,8 @@ public class Controller {
                             System.out.println("Not valid option!");
                             break;
                     }
-
                 }
             }
-
         }
     }
 
@@ -663,16 +662,16 @@ public class Controller {
                     alterPosition();
                     break;
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, searchTeacher);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, searchTeacher);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, searchTeacher);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, searchTeacher);
                     break;
             }
         }
@@ -738,6 +737,165 @@ public class Controller {
     }
 
     private void managerFindStudent(Mode mode) {
+        System.out.println("Enter student`s login");
+        String login = sc.nextLine();
+
+        Student searchStudent = null;
+
+        for (Student s: students) {
+            if (s.getLogin().equals(login)) {
+                searchStudent = s;
+
+                break;
+            }
+        }
+
+        if (searchStudent == null) {
+            System.out.println("Student not found!");
+        }
+        else {
+            System.out.println(searchStudent);
+
+            if (mode == Mode.MANAGER) {
+
+                String ans = "";
+
+                while (!ans.equals("exit")) {
+                    System.out.println("Do you want to edit info?");
+
+                    ans = sc.nextLine();
+
+                    switch (ans) {
+                        case "yes":
+                            managerEditStudent(searchStudent);
+                            break;
+                        case "no":
+                            return;
+                        default:
+                            System.out.println("Not valid option!");
+                            break;
+                    }
+
+                }
+            }
+            else if (mode == Mode.ORMANAGER) {
+                System.out.println("Do you want to edit info or manage courses?");
+
+                String ans = sc.nextLine();
+
+                while (!ans.equals("exit")) {
+
+                    switch (ans) {
+                        case "edit info":
+                            managerEditStudent(searchStudent);
+                            break;
+                        case "manage courses":
+                            managerStudentCourses(searchStudent);
+                            break;
+                        case "exit":
+                            return;
+                        default:
+                            System.out.println("Not valid option!");
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void managerEditStudent(Student searchStudent) {
+        System.out.println(searchStudent);
+        Mode curMode = Mode.STUDENT;
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            System.out.println("What do you want to edit?");
+
+            ans = sc.nextLine();
+
+            switch (ans) {
+                case "faculty":
+                    alterFaculty(curMode);
+                    break;
+                case "degree":
+                    alterDegree();
+                    break;
+                case "position":
+                    alterPosition();
+                    break;
+                case "phone":
+                    alterPhone(curMode, searchStudent);
+                    break;
+                case "email":
+                    alterEmail(curMode, searchStudent);
+                    break;
+                case "birthdate":
+                    alterBdate(curMode, searchStudent);
+                    break;
+                case "gender":
+                    alterGender(curMode, searchStudent);
+                    break;
+            }
+        }
+    }
+
+    private void managerStudentCourses(Student searchStudent) {
+        System.out.println("Do you want to add or delete course?");
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ans = sc.nextLine();
+
+            if (ans.equals("add") || ans.equals("delete")) {
+                System.out.println("Enter course`s id");
+
+                String id = sc.nextLine();
+
+                boolean found = false;
+
+                if (ans.equals("add")) {
+                    for (Course c : courses) {
+                        if (c.getId().equals(id)) {
+                            found = true;
+
+                            break;
+                        }
+                    }
+                }
+                else if (ans.equals("delete")) {
+                    for (Course c: searchStudent.getCourses()) {
+                        if (c.getId().equals(id)) {
+                            found = true;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (found) {
+                    if (ans.equals("add")) {
+                        searchStudent.addCourses(id);
+                    }
+                    else if (ans.equals("delete")) {
+                        searchStudent.deleteCourse(id);
+                    }
+
+                    System.out.println("Success!");
+
+                }
+                else {
+                    System.out.println("Course not found!");
+                }
+
+            }
+
+            else {
+                System.out.println("Invalid option!");
+            }
+
+        }
 
     }
 
@@ -1037,16 +1195,16 @@ public class Controller {
 
             switch (ans) {
                 case "phone":
-                    alterPhone(curMode);
+                    alterPhone(curMode, executor);
                     break;
                 case "email":
-                    alterEmail(curMode);
+                    alterEmail(curMode, executor);
                     break;
                 case "birthdate":
-                    alterBdate(curMode);
+                    alterBdate(curMode, executor);
                     break;
                 case "gender":
-                    alterGender(curMode);
+                    alterGender(curMode, executor);
                     break;
             }
         }
@@ -1227,59 +1385,27 @@ public class Controller {
         System.out.println(thisNews.getFaculty());
     }
 
-    private void alterPhone(Mode mode) {
+    private void alterPhone(Mode mode, User user) {
         System.out.println("Enter you phone number");
 
         String ans = sc.nextLine();
 
-        switch (mode) {
-            case STUDENT:
-                student.setPhone(ans);
-                break;
-            case TEACHER:
-                teacher.setPhone(ans);
-                break;
-            case MANAGER:
-                manager.setPhone(ans);
-                break;
-            case ORMANAGER:
-                orManager.setPhone(ans);
-                break;
-            case EXECUTOR:
-                executor.setPhone(ans);
-                break;
-        }
+        user.setPhone(ans);
 
         System.out.println("Success!");
     }
 
-    private void alterEmail(Mode mode) {
+    private void alterEmail(Mode mode, User user) {
         System.out.println("Enter you email");
 
         String ans = sc.nextLine();
 
-        switch (mode) {
-            case STUDENT:
-                student.setEmail(ans);
-                break;
-            case TEACHER:
-                teacher.setEmail(ans);
-                break;
-            case MANAGER:
-                manager.setEmail(ans);
-                break;
-            case ORMANAGER:
-                orManager.setEmail(ans);
-                break;
-            case EXECUTOR:
-                executor.setEmail(ans);
-                break;
-        }
+        user.setEmail(ans);
 
         System.out.println("Success!");
     }
 
-    private void alterBdate(Mode mode) {
+    private void alterBdate(Mode mode, User user) {
         System.out.println("Enter birthdate`s day");
         String ans_day = sc.nextLine();
 
@@ -1296,23 +1422,7 @@ public class Controller {
 
             Date date = new Date(year, month, day);
 
-            switch (mode) {
-                case STUDENT:
-                    student.setBirthDate(date);
-                    break;
-                case TEACHER:
-                    teacher.setBirthDate(date);
-                    break;
-                case EXECUTOR:
-                    executor.setBirthDate(date);
-                    break;
-                case MANAGER:
-                    manager.setBirthDate(date);
-                    break;
-                case ORMANAGER:
-                    orManager.setBirthDate(date);
-                    break;
-            }
+            user.setBirthDate(date);
 
             System.out.println("Success!");
         }
@@ -1321,7 +1431,7 @@ public class Controller {
         }
     }
 
-    private void alterGender(Mode mode) {
+    private void alterGender(Mode mode, User user) {
         System.out.println("Enter you phone number");
         Gender gender;
 
@@ -1339,23 +1449,7 @@ public class Controller {
                 return;
         }
 
-        switch (mode) {
-            case STUDENT:
-                student.setGender(gender);
-                break;
-            case TEACHER:
-                teacher.setGender(gender);
-                break;
-            case MANAGER:
-                manager.setGender(gender);
-                break;
-            case ORMANAGER:
-                orManager.setGender(gender);
-                break;
-            case EXECUTOR:
-                executor.setGender(gender);
-                break;
-        }
+        user.setGender(gender);
 
         System.out.println("Success!");
     }
