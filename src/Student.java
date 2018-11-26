@@ -13,6 +13,8 @@ public class Student extends User implements ManagingCourses, Serializable {
 
     {
         yearOfStudy = 1;
+        degree = null;
+        faculty = null;
         courses = new ArrayList<String>();
     }
 
@@ -77,7 +79,24 @@ public class Student extends User implements ManagingCourses, Serializable {
     public void deleteCourse(String courseId) { courses.remove(courseId); }
 
     @Override
-    public String toString() { return super.toString(); }
+    public String toString() {
+        String degreeInfo, facultyInfo;
+        try {
+            degreeInfo = degree.toString() + ", ";
+        }
+        catch (Exception e) {
+            degreeInfo = "";
+        }
+        try {
+            facultyInfo = faculty.toString() + " ";
+        }
+        catch (Exception e) {
+            facultyInfo = "";
+        }
+        String info = "Education: " + facultyInfo + degreeInfo + yearOfStudy + " course\n";
+        String idInfo = "Personal ID: " + id + '\n';
+        return "Student\n" + super.toString() + idInfo + info;
+    }
 
     @Override
     public boolean equals(Object obj) { return super.equals(obj); }

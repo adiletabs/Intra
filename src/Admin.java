@@ -7,7 +7,7 @@ public class Admin implements Serializable {
     private String login;
     private String password;
 
-    private final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
+    private final String PATH = "C:/Users/Adlet/Desktop/OOP/Intranet/files/";
     private final String FILE = "admin.txt";
 
     {

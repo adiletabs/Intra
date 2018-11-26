@@ -157,7 +157,7 @@ public class Controller {
     private void sessionTeacher() {
         teacher = (Teacher) user;
 
-        curCourses = teacher.getCoursesObj();
+        curCourses = teacher.getCourses();
 
         String ans = "";
 
@@ -330,7 +330,7 @@ public class Controller {
         System.out.println("What`s its text?");
         String text = sc.nextLine();
 
-        Order order = new Order(title, text, teacher.getLogin(), Calendar.getInstance().getTime());
+        Order order = new Order(title, text, teacher.getLogin());
 
         teacher.sendOrder(order);
     }

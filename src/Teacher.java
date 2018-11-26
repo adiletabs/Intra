@@ -45,9 +45,20 @@ public class Teacher extends Employee implements ManagingCourses, Serializable {
 
     @Override
     public String toString() {
-        String facultyInfo = "Faculty: " + faculty.toString() + '\n';
-        String posInfo = "Position: " + position.toString() + '\n';
-        return super.toString() + facultyInfo + posInfo;
+        String facultyInfo, posInfo;
+        try {
+            facultyInfo = "Faculty: " + faculty.toString() + '\n';
+        }
+        catch (Exception e) {
+            facultyInfo = "";
+        }
+        try {
+            posInfo = "Position: " + position.toString() +'\n';
+        }
+        catch (Exception e) {
+            posInfo = "";
+        }
+        return "Teacher\n" + super.toString() + facultyInfo + posInfo;
     }
 
     @Override

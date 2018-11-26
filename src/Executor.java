@@ -4,18 +4,19 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Executor extends Employee implements ManagingOrders, Serializable {
-    public static ArrayList<Order> orders = new ArrayList<>();
+    public static ArrayList<Order> orders;
 
     static {
         loadOrders();
+        orders = new ArrayList<>();
     }
 
-    private static final String PATH = "/home/dontnicemebr0/IdeaProjects/Intra/src/";
+    private static final String PATH = "C:/Users/Adlet/Desktop/OOP/Intranet/files/";
     private static final String ORDERS = "orders.out";
 
     private static final String EXCEPT_CLASS = "Class not found!";
     private static final String EXCEPT_FILE = "File not found!";
-    private static final String EXCEPT_IO = "Input / Output exception!";
+    private static final String EXCEPT_IO = "Input/Output exception!";
 
     public Executor (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
@@ -69,7 +70,7 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
                 text = "Your order is rejected. Sorry!";
                 break;
         }
-        Message message = new Message("Re: " + title, text, getLogin(), now);
+        Message message = new Message("Re: " + title, text, getLogin());
         sendMessage(message, sender);
     }
 
@@ -106,7 +107,7 @@ public class Executor extends Employee implements ManagingOrders, Serializable {
     }
 
     @Override
-    public String toString() { return super.toString(); }
+    public String toString() { return "Executor\n" + super.toString(); }
 
     @Override
     public boolean equals(Object obj) { return super.equals(obj); }

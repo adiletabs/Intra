@@ -90,12 +90,15 @@ public class Course implements ManagingFiles, Serializable {
         }
     }
 
+    @Override
     public String toString() {
         String nameInfo = "Course: " + courseName + '\n';
+        String idInfo = "Course ID: " + id + '\n';
         String creditInfo = "Credit number: " + creditNumber + '\n';
-        return nameInfo + creditInfo;
+        return nameInfo + idInfo + creditInfo;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) return  true;
         if (!(obj instanceof Course)) return false;
@@ -103,5 +106,6 @@ public class Course implements ManagingFiles, Serializable {
         return c.id.equals(id) && c.courseName.equals(courseName) && c.creditNumber == creditNumber;
     }
 
+    @Override
     public int hashCode() { return id.hashCode(); }
 }

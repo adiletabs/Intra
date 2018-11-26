@@ -8,8 +8,8 @@ public class Order extends Message implements Serializable {
         status = OrderStatus.NEW;
     }
 
-    public Order(String title, String text, String sender, Date date) {
-        super(title, text, sender, date);
+    public Order(String title, String text, String sender) {
+        super(title, text, sender);
     }
 
     public OrderStatus getStatus() { return status; }

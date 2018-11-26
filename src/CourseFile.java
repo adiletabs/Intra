@@ -17,7 +17,7 @@ public class CourseFile implements Serializable {
 
     @Override
     public String toString() {
-        return title + '\n' + text;
+        return "Course file\n" + title + "\n\n" + text + '\n';
     }
 
     @Override

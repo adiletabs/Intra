@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -8,7 +9,8 @@ public class Message implements Serializable {
     private String sender;
     private Date date;
 
-    public Message(String title, String text, String sender, Date date) {
+    public Message(String title, String text, String sender) {
+        date = Calendar.getInstance().getTime();
         this.title = title;
         this.text = text;
         this.sender = sender;
@@ -31,7 +33,7 @@ public class Message implements Serializable {
     public String toString() {
         String dateInfo = new SimpleDateFormat("dd.MM.yyyy").format(date);
         String timeInfo = new SimpleDateFormat("HH:mm").format(date);
-        String info = title + '\n' + text + '\n';
+        String info = title + "\n\n" + text + "\n\n";
         info += "Sender: " + sender + '\n' + "Date: " + dateInfo + '\n' + "Time: " + timeInfo + '\n';
         return info;
     }

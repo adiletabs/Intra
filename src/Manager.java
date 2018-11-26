@@ -4,6 +4,10 @@ import java.util.ArrayList;
 public class Manager extends Employee implements ManagingNews, Searching, Serializable {
     private Faculty faculty;
 
+    {
+        faculty = null;
+    }
+
     public Manager (String lastName, String firstName, String login) {
         super(lastName, firstName, login);
     }
@@ -59,7 +63,13 @@ public class Manager extends Employee implements ManagingNews, Searching, Serial
 
     @Override
     public String toString() {
-        String facultyInfo = "Faculty: " + faculty.toString() + '\n';
+        String facultyInfo;
+        try {
+            facultyInfo = "Gender: " + faculty.toString() + '\n';
+        }
+        catch (Exception e) {
+            facultyInfo = "";
+        }
         return super.toString() + facultyInfo;
     }
 

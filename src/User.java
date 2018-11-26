@@ -10,8 +10,8 @@ public abstract class User extends Person implements Serializable {
 
     {
         password = defaultPassword;
-        email = "";
-        phone = "";
+        email = "N/A";
+        phone = "N/A";
     }
 
     public User(String lastName, String firstName, String login) {
