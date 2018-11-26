@@ -3,16 +3,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Controller {
-    private Mode currentMode;
+    private Mode mode;
     private Admin admin;
     private User user;
 
     private Teacher teacher;
     private ArrayList<Course> curCourses;
+    private ArrayList<Message> curMessages;
 
     private Student student;
 
@@ -22,8 +22,6 @@ public class Controller {
 
     private Executor executor;
 
-    private ArrayList<Course> currentCourses;
-    private ArrayList<Message> currentMessages;
 
     public Controller() {
         loadData();
@@ -359,6 +357,7 @@ public class Controller {
             System.out.println("3. Show not done orders");
             System.out.println("4. Show done orders");
             System.out.println("5. Show rejected orders");
+            System.out.println("6. Show messages");
 
             ans = sc.nextLine();
 
@@ -367,16 +366,19 @@ public class Controller {
                     showNews();
                     break;
                 case "2":
-                    executorNew();
+                    executorOrders(OrderStatus.NEW);
                     break;
                 case "3":
-                    executorNotDone();
+                    executorOrders(OrderStatus.NOT_DONE);
                     break;
                 case "4":
-                    executorDone();
+                    executorOrders(OrderStatus.DONE);
                     break;
                 case "5":
-                    executorRejected();
+                    executorOrders(OrderStatus.REJECTED);
+                    break;
+                case "6":
+                    showMessages();
                     break;
                 case "exit":
                     return;
@@ -387,8 +389,8 @@ public class Controller {
         }
     }
 
-    private void executorNew() {
-        ArrayList<Order> orders = executor.getOrders(OrderStatus.NEW);
+    private void executorOrders(OrderStatus status) {
+        ArrayList<Order> orders = executor.getOrders(status);
 
         for (int i = 0; i < orders.size(); ++i) {
             System.out.println((i + 1) + ". " + orders.get(i).getTitle());
@@ -407,7 +409,7 @@ public class Controller {
                 ind--;
 
                 if (ind > -1 && ind < orders.size()) {
-                    showOrder(orders.get(ind));
+                    executorOrder(orders.get(ind));
                 }
                 else {
                     System.out.println("Wrong selection");
@@ -423,7 +425,7 @@ public class Controller {
         }
     }
 
-    private void showOrder(Order order) {
+    private void executorOrder(Order order) {
         System.out.println(order);
 
         String ans = "";
@@ -465,50 +467,9 @@ public class Controller {
         Executor.saveOrders();
     }
 
-    private void executorDone() {
-        ArrayList<Order> orders = executor.getOrders(OrderStatus.DONE);
-
-        for (int i = 0; i < orders.size(); ++i) {
-            System.out.println((i + 1) + ". " + orders.get(i).getTitle());
-        }
-
-        String ans = "";
-
-        System.out.println("Select one order!");
-
-        while (!ans.equals("exit")) {
-            ans = sc.nextLine();
-
-            try {
-                int ind = Integer.decode(ans);
-
-                ind--;
-
-                if (ind > -1 && ind < orders.size()) {
-                    showOrder(orders.get(ind));
-                }
-                else {
-                    System.out.println("Wrong selection");
-                }
-            }
-            catch (Exception e) {
-                if (ans.equals("exit")) {
-                    break;
-                }
-
-                System.out.println("Wrong selection");
-            }
-        }
-    }
-
-    private void executorNotDone() {
+    private void showMessages() {
 
     }
-
-    private void executorRejected() {
-
-    }
-
 
     private void sessionAdmin(String login, String password) {
         admin = new Admin();
