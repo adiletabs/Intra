@@ -184,8 +184,10 @@ public class Controller {
 
             switch (ans) {
                 case "1":
+                    showStudentMarks(ind);
                     break;
                 case "2":
+                    showCourseFiles(ind);
                     break;
                 case "3":
                     break;
@@ -204,6 +206,52 @@ public class Controller {
 
     private void studentRegistration() {
 
+    }
+
+    private void showStudentMarks(int ind) {
+
+    }
+
+    private void showCourseFiles(int index) {
+        System.out.println(curCourses);
+
+        String ans = "";
+
+        while (!ans.equals("exit")) {
+            ArrayList<CourseFile> files = curCourses.get(index).getFiles();
+
+            System.out.println("Select one file!");
+
+            for (int i = 0; i < files.size(); ++i) {
+                System.out.println((i + 1) + ". " + files.get(i).getTitle());
+            }
+
+            ans = sc.nextLine();
+
+            try {
+                int ind = Integer.decode(ans);
+
+                ind--;
+
+                if (ind > -1 && ind < files.size()) {
+                    showCourseFile(files.get(ind));
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch (Exception e) {
+                if (ans.equals("exit")) {
+                    break;
+                }
+
+                System.out.println("Wrong selection");
+            }
+        }
+    }
+
+    private void showCourseFile(CourseFile file) {
+        System.out.println(file);
     }
 
     private void studentInfo() {
@@ -314,7 +362,7 @@ public class Controller {
                     teacherDeleteFile(ind);
                     break;
                 case "3":
-                    showNews();
+                    teacherCourseStudents(ind);
                     break;
                 case "4":
                     System.out.println(curCourses.get(ind));
@@ -350,6 +398,14 @@ public class Controller {
         curCourses.get(ind).deleteFile(title);
 
         System.out.println("Success!");
+    }
+
+    private void teacherCourseStudents(int ind) {
+        ArrayList<String> students = curCourses.get(ind).getStudentLogins();
+
+        for (int i = 0; i < students.size(); ++i) {
+            System.out.println((i + 1) + ". " + students.get(i));
+        }
     }
 
     private void sendOrder() {
@@ -404,43 +460,43 @@ public class Controller {
 
 //  STUDENT + TEACHER (MANAGING COURSE)
     private void showCourses(Mode mode) {
-    String ans = "";
+        String ans = "";
 
-    while (!ans.equals("exit")) {
-        System.out.println("Your courses:");
+        while (!ans.equals("exit")) {
+            System.out.println("Your courses:");
 
-        for (int i = 0; i < curCourses.size(); ++i) {
-            System.out.println((i + 1) + ". " + curCourses.get(i).getCourseName());
-        }
+            for (int i = 0; i < curCourses.size(); ++i) {
+                System.out.println((i + 1) + ". " + curCourses.get(i).getCourseName());
+            }
 
-        System.out.println("Select course you want");
+            System.out.println("Select course you want");
 
-        ans = sc.nextLine();
+            ans = sc.nextLine();
 
-        try {
-            int ind = Integer.decode(ans);
+            try {
+                int ind = Integer.decode(ans);
 
-            ind--;
+                ind--;
 
-            if (ind > -1 && ind < curCourses.size()) {
-                switch (mode) {
-                    case TEACHER:
-                        teacherCourse(ind);
-                        break;
-                    case STUDENT:
-                        studentCourse(ind);
-                        break;
+                if (ind > -1 && ind < curCourses.size()) {
+                    switch (mode) {
+                        case TEACHER:
+                            teacherCourse(ind);
+                            break;
+                        case STUDENT:
+                            studentCourse(ind);
+                            break;
+                    }
+                }
+                else {
+                    System.out.println("Wrong selection");
                 }
             }
-            else {
+            catch (Exception e) {
                 System.out.println("Wrong selection");
             }
         }
-        catch (Exception e) {
-            System.out.println("Wrong selection");
-        }
     }
-}
 
 //  MANAGER
     private void sessionManager() {

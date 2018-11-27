@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b70b5b01-8ab1-4205-a4d7-8c98cc6fa094" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/courses.out" beforeDir="false" afterPath="$PROJECT_DIR$/courses.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Intranet/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Intranet/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Intranet/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/students.out" beforeDir="false" afterPath="$PROJECT_DIR$/students.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teachers.out" beforeDir="false" afterPath="$PROJECT_DIR$/teachers.out" afterDir="false" />
@@ -63,7 +63,7 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="221" />
+          <entry key="java" value="222" />
           <entry key="out" value="7" />
           <entry key="txt" value="8" />
         </counts>
@@ -71,19 +71,19 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="221" />
+          <entry key="JAVA" value="222" />
           <entry key="PLAIN_TEXT" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="27153" />
+          <entry key="java" value="27679" />
           <entry key="txt" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="27153" />
+          <entry key="JAVA" value="27679" />
           <entry key="PLAIN_TEXT" value="43" />
         </counts>
       </usages-collector>
@@ -103,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-773">
-              <caret line="135" column="42" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+            <state relative-caret-position="202">
+              <caret line="832" column="37" selection-start-line="832" selection-start-column="37" selection-end-line="832" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#544#545#0" expanded="true" />
@@ -117,10 +117,9 @@
                 <element signature="e#1837#1845#0" expanded="true" />
                 <element signature="e#1904#1910#0" expanded="true" />
                 <element signature="e#2556#3898#0" />
+                <element signature="e#7086#7087#0" expanded="true" />
+                <element signature="e#7122#7123#0" expanded="true" />
                 <element signature="e#5732#6750#0" />
-                <element signature="e#8186#9141#0" />
-                <element signature="e#9147#9599#0" />
-                <element signature="e#9605#9856#0" />
                 <element signature="e#9862#10230#0" />
                 <element signature="e#10236#11246#0" />
                 <element signature="e#12279#13996#0" />
@@ -137,7 +136,6 @@
                 <element signature="e#22915#23460#0" />
                 <element signature="e#23466#24656#0" />
                 <element signature="e#24658#26432#0" />
-                <element signature="e#26438#27390#0" />
                 <element signature="e#27396#28671#0" />
                 <element signature="e#28677#29398#0" />
                 <element signature="e#29400#30627#0" />
@@ -169,6 +167,28 @@
                 <element signature="e#40542#41010#0" />
                 <element signature="e#41016#41494#0" />
                 <element signature="e#41500#41973#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Course.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-840">
+              <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1572#1573#0" expanded="true" />
+                <element signature="e#1614#1615#0" expanded="true" />
+                <element signature="e#1846#1847#0" expanded="true" />
+                <element signature="e#1892#1893#0" expanded="true" />
+                <element signature="e#1935#1936#0" expanded="true" />
+                <element signature="e#1975#1976#0" expanded="true" />
+                <element signature="e#2037#2038#0" expanded="true" />
+                <element signature="e#2085#2086#0" expanded="true" />
+                <element signature="e#2146#2147#0" expanded="true" />
+                <element signature="e#2174#2175#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -233,6 +253,8 @@
       <find>Do you want to add or delete course?</find>
       <find>NEWS</find>
       <find>news</find>
+      <find>Wrong selection</find>
+      <find>curCourses</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -313,7 +335,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543268066910" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543281776371" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -372,6 +394,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="748" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26439393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -698,26 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1572#1573#0" expanded="true" />
-            <element signature="e#1614#1615#0" expanded="true" />
-            <element signature="e#1846#1847#0" expanded="true" />
-            <element signature="e#1892#1893#0" expanded="true" />
-            <element signature="e#1935#1936#0" expanded="true" />
-            <element signature="e#1975#1976#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-            <element signature="e#2085#2086#0" expanded="true" />
-            <element signature="e#2146#2147#0" expanded="true" />
-            <element signature="e#2174#2175#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -757,10 +760,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1572#1573#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+            <element signature="e#1846#1847#0" expanded="true" />
+            <element signature="e#1892#1893#0" expanded="true" />
+            <element signature="e#1935#1936#0" expanded="true" />
+            <element signature="e#1975#1976#0" expanded="true" />
+            <element signature="e#2037#2038#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2146#2147#0" expanded="true" />
+            <element signature="e#2174#2175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-773">
-          <caret line="135" column="42" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+        <state relative-caret-position="202">
+          <caret line="832" column="37" selection-start-line="832" selection-start-column="37" selection-end-line="832" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#544#545#0" expanded="true" />
@@ -773,10 +796,9 @@
             <element signature="e#1837#1845#0" expanded="true" />
             <element signature="e#1904#1910#0" expanded="true" />
             <element signature="e#2556#3898#0" />
+            <element signature="e#7086#7087#0" expanded="true" />
+            <element signature="e#7122#7123#0" expanded="true" />
             <element signature="e#5732#6750#0" />
-            <element signature="e#8186#9141#0" />
-            <element signature="e#9147#9599#0" />
-            <element signature="e#9605#9856#0" />
             <element signature="e#9862#10230#0" />
             <element signature="e#10236#11246#0" />
             <element signature="e#12279#13996#0" />
@@ -793,7 +815,6 @@
             <element signature="e#22915#23460#0" />
             <element signature="e#23466#24656#0" />
             <element signature="e#24658#26432#0" />
-            <element signature="e#26438#27390#0" />
             <element signature="e#27396#28671#0" />
             <element signature="e#28677#29398#0" />
             <element signature="e#29400#30627#0" />
