@@ -58,7 +58,7 @@ public class Controller {
 
 //  MAIN METHOD
     public void begin() {
-        System.out.println("Are you enter as admin or user?");
+        System.out.println("Enter as admin or user?");
 
         String ans = sc.nextLine().toLowerCase();
 
@@ -190,14 +190,29 @@ public class Controller {
                     showCourseFiles(ind);
                     break;
                 case "3":
+                    System.out.println(curCourses.get(ind));
                     break;
                 case "4":
+                    showTeacher(ind);
                     break;
                 default:
                     System.out.println("Not valid option!");
                     break;
             }
         }
+    }
+
+    private void showTeacher(int ind) {
+        Course c = curCourses.get(ind);
+
+        for (String s: c.getTeacherLogins()) {
+            for (Teacher t: teachers) {
+                if (s.equals(t.getLogin())) {
+                    System.out.println(t);
+                }
+            }
+        }
+
     }
 
     private void studentTranscript() {
@@ -209,15 +224,31 @@ public class Controller {
     }
 
     private void showStudentMarks(int ind) {
+        int[] marks = curCourses.get(ind).getScores(student.getLogin());
+
+        System.out.println("First attestation: " + marks[0]);
+        System.out.println("Second attestation: " + marks[1]);
+        System.out.println("Final: " + marks[2]);
+
+        String ans = "";
+
+        while (true) {
+            ans = sc.nextLine();
+
+            if (ans.equals("exit")) return;
+
+            else System.out.println("Print exit to quit");
+        }
 
     }
 
     private void showCourseFiles(int index) {
-        System.out.println(curCourses);
+//        System.out.println(curCourses);
 
         String ans = "";
 
         while (!ans.equals("exit")) {
+
             ArrayList<CourseFile> files = curCourses.get(index).getFiles();
 
             System.out.println("Select one file!");
@@ -375,6 +406,7 @@ public class Controller {
     }
 
     private void teacherAddFile(int ind) {
+//        System.out.println(ind);
         System.out.println("Load the file you want to add");
 
         System.out.println("What`s its title?");
@@ -406,6 +438,7 @@ public class Controller {
         for (int i = 0; i < students.size(); ++i) {
             System.out.println((i + 1) + ". " + students.get(i));
         }
+
     }
 
     private void sendOrder() {
@@ -833,6 +866,8 @@ public class Controller {
             if (ans.equals("add") || ans.equals("delete")) {
                 System.out.println("Enter course`s id");
 
+                Course c_1= null;
+
                 String id = sc.nextLine();
 
                 boolean found = false;
@@ -842,6 +877,7 @@ public class Controller {
                         if (c.getId().equals(id)) {
                             found = true;
 
+                            c_1 = c;
                             break;
                         }
                     }
@@ -851,6 +887,7 @@ public class Controller {
                         if (c.getId().equals(id)) {
                             found = true;
 
+                            c_1 = c;
                             break;
                         }
                     }
@@ -859,9 +896,13 @@ public class Controller {
                 if (found) {
                     if (ans.equals("add")) {
                         searchTeacher.addCourses(id);
+
+                        c_1.addTeacher(searchTeacher.getLogin());
                     }
                     else if (ans.equals("delete")) {
                         searchTeacher.deleteCourse(id);
+
+                        c_1.deleteTeacher(searchTeacher.getLogin());
                     }
 
                     System.out.println("Success!");
@@ -1000,12 +1041,16 @@ public class Controller {
 
                 String id = sc.nextLine();
 
+                Course c_1 = null;
+
                 boolean found = false;
 
                 if (ans.equals("add")) {
                     for (Course c : courses) {
                         if (c.getId().equals(id)) {
                             found = true;
+
+                            c_1 = c;
 
                             break;
                         }
@@ -1016,6 +1061,8 @@ public class Controller {
                         if (c.getId().equals(id)) {
                             found = true;
 
+                            c_1 = c;
+
                             break;
                         }
                     }
@@ -1024,9 +1071,13 @@ public class Controller {
                 if (found) {
                     if (ans.equals("add")) {
                         searchStudent.addCourses(id);
+
+                        c_1.addStudent(searchStudent.getLogin());
                     }
                     else if (ans.equals("delete")) {
                         searchStudent.deleteCourse(id);
+
+                        c_1.deleteStudent(searchStudent.getLogin());
                     }
 
                     System.out.println("Success!");

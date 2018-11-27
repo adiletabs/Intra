@@ -14,7 +14,11 @@ public class Course implements ManagingFiles, Serializable {
 
     {
         teacherLogins = new ArrayList<String>();
+        studentLogins = new ArrayList<String>();
+        scores = new HashMap<>();
+        files = new ArrayList<>();
     }
+
 
     public Course (String id, String courseName, int creditNumber) {
         this.id = id;
@@ -37,7 +41,7 @@ public class Course implements ManagingFiles, Serializable {
 
     public ArrayList<String> getStudentLogins() { return studentLogins; }
     public void addStudent(String login) { studentLogins.add(login); }
-    private void deleteStudent(String login) { studentLogins.remove(login); }
+    public void deleteStudent(String login) { studentLogins.remove(login); }
 
     public CourseStatus getStatus(String login) {
         return statuses.get(login);
