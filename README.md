@@ -1,1 +1,1 @@
-An app written in Java for university internal porta
+An app written in Java for university internal portal
